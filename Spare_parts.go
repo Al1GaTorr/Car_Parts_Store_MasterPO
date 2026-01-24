@@ -1,4 +1,4 @@
-package awesomeProject1
+package main
 
 import "time"
 

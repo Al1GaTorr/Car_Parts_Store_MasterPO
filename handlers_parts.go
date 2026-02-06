@@ -1,6 +1,7 @@
 package main
 
 import (
+	"carparts/models"
 	"context"
 	"net/http"
 	"strconv"
@@ -83,7 +84,7 @@ func PartsHandler(rp *Repo) http.HandlerFunc {
 				md = tm
 			}
 
-			p := SparePart{
+			p := models.SparePart{
 				CategoryID:      cid,
 				Brand:           in.Brand,
 				CarModel:        in.CarModel,
@@ -125,14 +126,20 @@ func PartByIDHandler(rp *Repo) http.HandlerFunc {
 			idStr := strings.TrimSuffix(path, "/availability")
 			idStr = strings.TrimSuffix(idStr, "/")
 			id, err := primitive.ObjectIDFromHex(idStr)
-			if err != nil { WriteError(w, 400, "invalid id"); return }
+			if err != nil {
+				WriteError(w, 400, "invalid id")
+				return
+			}
 
 			ctx, cancel := context.WithTimeout(context.Background(), 8*time.Second)
 			defer cancel()
 
 			p, err := rp.GetPart(ctx, id)
 			if err != nil {
-				if err == mongo.ErrNoDocuments { WriteError(w, 404, "not found"); return }
+				if err == mongo.ErrNoDocuments {
+					WriteError(w, 404, "not found")
+					return
+				}
 				WriteError(w, 500, "db error")
 				return
 			}
@@ -158,7 +165,10 @@ func PartByIDHandler(rp *Repo) http.HandlerFunc {
 
 			p, err := rp.GetPart(ctx, id)
 			if err != nil {
-				if err == mongo.ErrNoDocuments { WriteError(w, 404, "not found"); return }
+				if err == mongo.ErrNoDocuments {
+					WriteError(w, 404, "not found")
+					return
+				}
 				WriteError(w, 500, "db error")
 				return
 			}
@@ -176,21 +186,27 @@ func PartByIDHandler(rp *Repo) http.HandlerFunc {
 				IsNew         bool    `json:"is_new"`
 				IsActive      bool    `json:"is_active"`
 			}
-			if err := ReadJSON(r, &in); err != nil { WriteError(w, 400, "invalid json"); return }
+			if err := ReadJSON(r, &in); err != nil {
+				WriteError(w, 400, "invalid json")
+				return
+			}
 
 			upd := bson.M{
-				"brand": in.Brand,
-				"car_model": in.CarModel,
+				"brand":         in.Brand,
+				"car_model":     in.CarModel,
 				"compatibility": in.Compatibility,
-				"price": in.Price,
-				"stock": in.Stock,
-				"description": in.Description,
-				"is_new": in.IsNew,
-				"is_active": in.IsActive,
+				"price":         in.Price,
+				"stock":         in.Stock,
+				"description":   in.Description,
+				"is_new":        in.IsNew,
+				"is_active":     in.IsActive,
 			}
 			if in.CategoryID != "" {
 				cid, err := primitive.ObjectIDFromHex(in.CategoryID)
-				if err != nil { WriteError(w, 400, "invalid category_id"); return }
+				if err != nil {
+					WriteError(w, 400, "invalid category_id")
+					return
+				}
 				upd["category_id"] = cid
 			}
 
@@ -206,26 +222,52 @@ func PartByIDHandler(rp *Repo) http.HandlerFunc {
 
 		case http.MethodPatch:
 			var in map[string]any
-			if err := ReadJSON(r, &in); err != nil { WriteError(w, 400, "invalid json"); return }
+			if err := ReadJSON(r, &in); err != nil {
+				WriteError(w, 400, "invalid json")
+				return
+			}
 
 			upd := bson.M{}
-			if v, ok := in["brand"]; ok { upd["brand"] = toString(v) }
-			if v, ok := in["car_model"]; ok { upd["car_model"] = toString(v) }
-			if v, ok := in["compatibility"]; ok { upd["compatibility"] = toString(v) }
-			if v, ok := in["description"]; ok { upd["description"] = toString(v) }
-			if v, ok := in["is_new"]; ok { if b, ok2 := v.(bool); ok2 { upd["is_new"] = b } }
-			if v, ok := in["is_active"]; ok { if b, ok2 := v.(bool); ok2 { upd["is_active"] = b } }
+			if v, ok := in["brand"]; ok {
+				upd["brand"] = toString(v)
+			}
+			if v, ok := in["car_model"]; ok {
+				upd["car_model"] = toString(v)
+			}
+			if v, ok := in["compatibility"]; ok {
+				upd["compatibility"] = toString(v)
+			}
+			if v, ok := in["description"]; ok {
+				upd["description"] = toString(v)
+			}
+			if v, ok := in["is_new"]; ok {
+				if b, ok2 := v.(bool); ok2 {
+					upd["is_new"] = b
+				}
+			}
+			if v, ok := in["is_active"]; ok {
+				if b, ok2 := v.(bool); ok2 {
+					upd["is_active"] = b
+				}
+			}
 			if v, ok := in["price"]; ok {
 				f, _ := strconv.ParseFloat(toString(v), 64)
-				if f > 0 { upd["price"] = f }
+				if f > 0 {
+					upd["price"] = f
+				}
 			}
 			if v, ok := in["stock"]; ok {
 				i, err := strconv.Atoi(toString(v))
-				if err == nil { upd["stock"] = i }
+				if err == nil {
+					upd["stock"] = i
+				}
 			}
 			if v, ok := in["category_id"]; ok {
 				cid, err := primitive.ObjectIDFromHex(toString(v))
-				if err != nil { WriteError(w, 400, "invalid category_id"); return }
+				if err != nil {
+					WriteError(w, 400, "invalid category_id")
+					return
+				}
 				upd["category_id"] = cid
 			}
 

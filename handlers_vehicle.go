@@ -20,7 +20,10 @@ func VehicleSearchHandler(rp *Repo) http.HandlerFunc {
 		var catID *primitive.ObjectID
 		if v := q.Get("category_id"); v != "" {
 			id, err := primitive.ObjectIDFromHex(v)
-			if err != nil { WriteError(w, 400, "invalid category_id"); return }
+			if err != nil {
+				WriteError(w, 400, "invalid category_id")
+				return
+			}
 			catID = &id
 		}
 

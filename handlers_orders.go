@@ -1,11 +1,13 @@
 package main
 
 import (
+	"carparts/models"
 	"context"
 	"net/http"
 	"strings"
 	"time"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -19,7 +21,7 @@ func OrdersHandler(rp *Repo) http.HandlerFunc {
 
 		var in struct {
 			CustomerID string `json:"customer_id"`
-			Items []struct {
+			Items      []struct {
 				PartID   string `json:"part_id"`
 				Quantity int    `json:"quantity"`
 			} `json:"items"`
@@ -45,7 +47,7 @@ func OrdersHandler(rp *Repo) http.HandlerFunc {
 		ctx, cancel := context.WithTimeout(context.Background(), 12*time.Second)
 		defer cancel()
 
-		orderItems := make([]OrderItem, 0, len(in.Items))
+		orderItems := make([]models.OrderItem, 0, len(in.Items))
 		for _, it := range in.Items {
 			pid, err := primitive.ObjectIDFromHex(it.PartID)
 			if err != nil {
@@ -59,7 +61,7 @@ func OrdersHandler(rp *Repo) http.HandlerFunc {
 				return
 			}
 
-			orderItems = append(orderItems, OrderItem{
+			orderItems = append(orderItems, models.OrderItem{
 				OrderID:  primitive.NilObjectID, // will set after insert
 				PartID:   updatedPart.ID,
 				Price:    updatedPart.Price,
@@ -67,7 +69,7 @@ func OrdersHandler(rp *Repo) http.HandlerFunc {
 			})
 		}
 
-		o := Order{
+		o := models.Order{
 			CustomerID: cid,
 			Items:      orderItems,
 			IsPaid:     false,
@@ -92,8 +94,8 @@ func OrdersHandler(rp *Repo) http.HandlerFunc {
 	}
 }
 
-func (rp *Repo) syncOrderItems(ctx context.Context, o Order) error {
-	_, err := rp.orders.UpdateOne(ctx, primitive.M{"_id": o.ID}, primitive.M{"$set": primitive.M{"items": o.Items}})
+func (rp *Repo) syncOrderItems(ctx context.Context, o models.Order) error {
+	_, err := rp.orders.UpdateOne(ctx, bson.M{"_id": o.ID}, bson.M{"$set": bson.M{"items": o.Items}})
 	return err
 }
 
@@ -106,7 +108,10 @@ func OrderByIDHandler(rp *Repo) http.HandlerFunc {
 			return
 		}
 		id, err := primitive.ObjectIDFromHex(idStr)
-		if err != nil { WriteError(w, 400, "invalid id"); return }
+		if err != nil {
+			WriteError(w, 400, "invalid id")
+			return
+		}
 
 		// /orders/{id}/status
 		if strings.HasSuffix(r.URL.Path, "/status") {
@@ -118,15 +123,24 @@ func OrderByIDHandler(rp *Repo) http.HandlerFunc {
 				Status string `json:"status"`
 				IsPaid bool   `json:"is_paid"`
 			}
-			if err := ReadJSON(r, &in); err != nil { WriteError(w, 400, "invalid json"); return }
-			if strings.TrimSpace(in.Status) == "" { WriteError(w, 400, "status is required"); return }
+			if err := ReadJSON(r, &in); err != nil {
+				WriteError(w, 400, "invalid json")
+				return
+			}
+			if strings.TrimSpace(in.Status) == "" {
+				WriteError(w, 400, "status is required")
+				return
+			}
 
 			ctx, cancel := context.WithTimeout(context.Background(), 8*time.Second)
 			defer cancel()
 
 			out, err := rp.UpdateOrderStatus(ctx, id, in.Status, in.IsPaid)
 			if err != nil {
-				if err == mongo.ErrNoDocuments { WriteError(w, 404, "not found"); return }
+				if err == mongo.ErrNoDocuments {
+					WriteError(w, 404, "not found")
+					return
+				}
 				WriteError(w, 500, "db error")
 				return
 			}
@@ -141,7 +155,10 @@ func OrderByIDHandler(rp *Repo) http.HandlerFunc {
 
 			out, err := rp.GetOrder(ctx, id)
 			if err != nil {
-				if err == mongo.ErrNoDocuments { WriteError(w, 404, "not found"); return }
+				if err == mongo.ErrNoDocuments {
+					WriteError(w, 404, "not found")
+					return
+				}
 				WriteError(w, 500, "db error")
 				return
 			}
@@ -153,7 +170,10 @@ func OrderByIDHandler(rp *Repo) http.HandlerFunc {
 
 			out, err := rp.CancelOrder(ctx, id)
 			if err != nil {
-				if err == mongo.ErrNoDocuments { WriteError(w, 404, "not found"); return }
+				if err == mongo.ErrNoDocuments {
+					WriteError(w, 404, "not found")
+					return
+				}
 				WriteError(w, 500, "db error")
 				return
 			}

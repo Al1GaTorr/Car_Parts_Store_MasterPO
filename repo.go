@@ -1,6 +1,7 @@
 package main
 
 import (
+	"carparts/models"
 	"context"
 	"errors"
 	"regexp"
@@ -18,7 +19,7 @@ type Repo struct {
 	orders     *mongo.Collection
 	alerts     *mongo.Collection
 
-	lowStockCh chan LowStockAlert
+	lowStockCh chan models.LowStockAlert
 }
 
 func NewRepo(db *mongo.Database) *Repo {
@@ -27,30 +28,30 @@ func NewRepo(db *mongo.Database) *Repo {
 		parts:      db.Collection("spare_parts"),
 		orders:     db.Collection("orders"),
 		alerts:     db.Collection("alerts"),
-		lowStockCh: make(chan LowStockAlert, 100),
+		lowStockCh: make(chan models.LowStockAlert, 100),
 	}
 }
 
 // -------- categories --------
-func (r *Repo) CreateCategory(ctx context.Context, c Category) (Category, error) {
+func (r *Repo) CreateCategory(ctx context.Context, c models.Category) (models.Category, error) {
 	res, err := r.categories.InsertOne(ctx, c)
 	if err != nil {
-		return Category{}, err
+		return models.Category{}, err
 	}
 	c.ID = res.InsertedID.(primitive.ObjectID)
 	return c, nil
 }
 
-func (r *Repo) ListCategories(ctx context.Context) ([]Category, error) {
+func (r *Repo) ListCategories(ctx context.Context) ([]models.Category, error) {
 	cur, err := r.categories.Find(ctx, bson.M{})
 	if err != nil {
 		return nil, err
 	}
 	defer cur.Close(ctx)
 
-	out := make([]Category, 0)
+	out := make([]models.Category, 0)
 	for cur.Next(ctx) {
-		var c Category
+		var c models.Category
 		if err := cur.Decode(&c); err != nil {
 			return nil, err
 		}
@@ -59,13 +60,13 @@ func (r *Repo) ListCategories(ctx context.Context) ([]Category, error) {
 	return out, nil
 }
 
-func (r *Repo) GetCategory(ctx context.Context, id primitive.ObjectID) (Category, error) {
-	var c Category
+func (r *Repo) GetCategory(ctx context.Context, id primitive.ObjectID) (models.Category, error) {
+	var c models.Category
 	err := r.categories.FindOne(ctx, bson.M{"_id": id}).Decode(&c)
 	return c, err
 }
 
-func (r *Repo) UpdateCategory(ctx context.Context, id primitive.ObjectID, name, desc string) (Category, error) {
+func (r *Repo) UpdateCategory(ctx context.Context, id primitive.ObjectID, name, desc string) (models.Category, error) {
 	upd := bson.M{}
 	if name != "" {
 		upd["name"] = name
@@ -74,11 +75,11 @@ func (r *Repo) UpdateCategory(ctx context.Context, id primitive.ObjectID, name, 
 		upd["description"] = desc
 	}
 	if len(upd) == 0 {
-		return Category{}, errors.New("nothing to update")
+		return models.Category{}, errors.New("nothing to update")
 	}
 
 	opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
-	var out Category
+	var out models.Category
 	err := r.categories.FindOneAndUpdate(ctx, bson.M{"_id": id}, bson.M{"$set": upd}, opts).Decode(&out)
 	return out, err
 }
@@ -89,10 +90,10 @@ func (r *Repo) DeleteCategory(ctx context.Context, id primitive.ObjectID) error 
 }
 
 // -------- parts --------
-func (r *Repo) CreatePart(ctx context.Context, p SparePart) (SparePart, error) {
+func (r *Repo) CreatePart(ctx context.Context, p models.SparePart) (models.SparePart, error) {
 	res, err := r.parts.InsertOne(ctx, p)
 	if err != nil {
-		return SparePart{}, err
+		return models.SparePart{}, err
 	}
 	p.ID = res.InsertedID.(primitive.ObjectID)
 
@@ -101,8 +102,8 @@ func (r *Repo) CreatePart(ctx context.Context, p SparePart) (SparePart, error) {
 	return p, nil
 }
 
-func (r *Repo) GetPart(ctx context.Context, id primitive.ObjectID) (SparePart, error) {
-	var p SparePart
+func (r *Repo) GetPart(ctx context.Context, id primitive.ObjectID) (models.SparePart, error) {
+	var p models.SparePart
 	err := r.parts.FindOne(ctx, bson.M{"_id": id}).Decode(&p)
 	return p, err
 }
@@ -112,17 +113,17 @@ func (r *Repo) DeletePart(ctx context.Context, id primitive.ObjectID) error {
 	return err
 }
 
-func (r *Repo) UpdatePart(ctx context.Context, id primitive.ObjectID, upd bson.M) (SparePart, error) {
+func (r *Repo) UpdatePart(ctx context.Context, id primitive.ObjectID, upd bson.M) (models.SparePart, error) {
 	if len(upd) == 0 {
-		return SparePart{}, errors.New("nothing to update")
+		return models.SparePart{}, errors.New("nothing to update")
 	}
 	opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
-	var out SparePart
+	var out models.SparePart
 	err := r.parts.FindOneAndUpdate(ctx, bson.M{"_id": id}, bson.M{"$set": upd}, opts).Decode(&out)
 	return out, err
 }
 
-func (r *Repo) ListPartsFiltered(ctx context.Context, categoryID *primitive.ObjectID, carModel, brand, q, compatibility string) ([]SparePart, error) {
+func (r *Repo) ListPartsFiltered(ctx context.Context, categoryID *primitive.ObjectID, carModel, brand, q, compatibility string) ([]models.SparePart, error) {
 	filter := bson.M{"is_active": true}
 
 	if categoryID != nil {
@@ -152,9 +153,9 @@ func (r *Repo) ListPartsFiltered(ctx context.Context, categoryID *primitive.Obje
 	}
 	defer cur.Close(ctx)
 
-	out := make([]SparePart, 0)
+	out := make([]models.SparePart, 0)
 	for cur.Next(ctx) {
-		var p SparePart
+		var p models.SparePart
 		if err := cur.Decode(&p); err != nil {
 			return nil, err
 		}
@@ -164,13 +165,13 @@ func (r *Repo) ListPartsFiltered(ctx context.Context, categoryID *primitive.Obje
 }
 
 // DecreaseStock: atomic check + decrement
-func (r *Repo) DecreaseStock(ctx context.Context, partID primitive.ObjectID, qty int) (SparePart, error) {
+func (r *Repo) DecreaseStock(ctx context.Context, partID primitive.ObjectID, qty int) (models.SparePart, error) {
 	if qty <= 0 {
-		return SparePart{}, errors.New("quantity must be > 0")
+		return models.SparePart{}, errors.New("quantity must be > 0")
 	}
 
 	opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
-	var updated SparePart
+	var updated models.SparePart
 
 	filter := bson.M{
 		"_id":       partID,
@@ -187,13 +188,13 @@ func (r *Repo) DecreaseStock(ctx context.Context, partID primitive.ObjectID, qty
 
 	if err != nil {
 		if errors.Is(err, mongo.ErrNoDocuments) {
-			return SparePart{}, errors.New("not enough stock or part not found")
+			return models.SparePart{}, errors.New("not enough stock or part not found")
 		}
-		return SparePart{}, err
+		return models.SparePart{}, err
 	}
 
 	if updated.Stock <= 5 {
-		r.lowStockCh <- LowStockAlert{
+		r.lowStockCh <- models.LowStockAlert{
 			PartID: updated.ID,
 			Name:   updated.Brand + " " + updated.CarModel,
 			Stock:  updated.Stock,
@@ -205,39 +206,39 @@ func (r *Repo) DecreaseStock(ctx context.Context, partID primitive.ObjectID, qty
 }
 
 // -------- orders --------
-func (r *Repo) CreateOrder(ctx context.Context, o Order) (Order, error) {
+func (r *Repo) CreateOrder(ctx context.Context, o models.Order) (models.Order, error) {
 	res, err := r.orders.InsertOne(ctx, o)
 	if err != nil {
-		return Order{}, err
+		return models.Order{}, err
 	}
 	o.ID = res.InsertedID.(primitive.ObjectID)
 	return o, nil
 }
 
-func (r *Repo) GetOrder(ctx context.Context, id primitive.ObjectID) (Order, error) {
-	var o Order
+func (r *Repo) GetOrder(ctx context.Context, id primitive.ObjectID) (models.Order, error) {
+	var o models.Order
 	err := r.orders.FindOne(ctx, bson.M{"_id": id}).Decode(&o)
 	return o, err
 }
 
-func (r *Repo) UpdateOrderStatus(ctx context.Context, id primitive.ObjectID, status string, isPaid bool) (Order, error) {
+func (r *Repo) UpdateOrderStatus(ctx context.Context, id primitive.ObjectID, status string, isPaid bool) (models.Order, error) {
 	opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
-	var out Order
+	var out models.Order
 	err := r.orders.FindOneAndUpdate(ctx, bson.M{"_id": id}, bson.M{"$set": bson.M{"status": status, "is_paid": isPaid}}, opts).Decode(&out)
 	return out, err
 }
 
-func (r *Repo) CancelOrder(ctx context.Context, id primitive.ObjectID) (Order, error) {
+func (r *Repo) CancelOrder(ctx context.Context, id primitive.ObjectID) (models.Order, error) {
 	return r.UpdateOrderStatus(ctx, id, "canceled", false)
 }
 
 // -------- alerts --------
-func (r *Repo) InsertAlert(ctx context.Context, a LowStockAlert) error {
+func (r *Repo) InsertAlert(ctx context.Context, a models.LowStockAlert) error {
 	_, err := r.alerts.InsertOne(ctx, a)
 	return err
 }
 
-func (r *Repo) ListAlerts(ctx context.Context, limit int64) ([]LowStockAlert, error) {
+func (r *Repo) ListAlerts(ctx context.Context, limit int64) ([]models.LowStockAlert, error) {
 	opts := options.Find().SetSort(bson.M{"at": -1})
 	if limit > 0 {
 		opts.SetLimit(limit)
@@ -248,9 +249,9 @@ func (r *Repo) ListAlerts(ctx context.Context, limit int64) ([]LowStockAlert, er
 	}
 	defer cur.Close(ctx)
 
-	out := make([]LowStockAlert, 0)
+	out := make([]models.LowStockAlert, 0)
 	for cur.Next(ctx) {
-		var a LowStockAlert
+		var a models.LowStockAlert
 		if err := cur.Decode(&a); err != nil {
 			return nil, err
 		}

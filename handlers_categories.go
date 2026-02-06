@@ -1,6 +1,7 @@
 package main
 
 import (
+	"carparts/models"
 	"context"
 	"net/http"
 	"strings"
@@ -42,7 +43,7 @@ func CategoriesHandler(rp *Repo) http.HandlerFunc {
 			ctx, cancel := context.WithTimeout(context.Background(), 8*time.Second)
 			defer cancel()
 
-			c := Category{Name: in.Name, Description: in.Description, PartsList: []primitive.ObjectID{}}
+			c := models.Category{Name: in.Name, Description: in.Description, PartsList: []primitive.ObjectID{}}
 			out, err := rp.CreateCategory(ctx, c)
 			if err != nil {
 				WriteError(w, 500, "db error")

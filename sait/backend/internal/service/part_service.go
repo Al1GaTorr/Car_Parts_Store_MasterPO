@@ -36,6 +36,25 @@ func (s *PartService) findCarByVIN(ctx context.Context, vin string) (*model.CarD
 	return s.repo.FindCarByVIN(ctx, vin)
 }
 
+func looksLikeVIN(s string) bool {
+	s = strings.ToUpper(strings.TrimSpace(s))
+	if len(s) != 17 {
+		return false
+	}
+	for _, ch := range s {
+		isDigit := ch >= '0' && ch <= '9'
+		isLetter := ch >= 'A' && ch <= 'Z'
+		if !isDigit && !isLetter {
+			return false
+		}
+		// VIN excludes I, O, Q.
+		if ch == 'I' || ch == 'O' || ch == 'Q' {
+			return false
+		}
+	}
+	return true
+}
+
 func matchesVehicle(p model.PartDoc, make, model string, year int, vin string) bool {
 	make = strings.TrimSpace(make)
 	model = strings.TrimSpace(model)
@@ -76,6 +95,16 @@ func (s *PartService) ListParts(ctx context.Context, params ListPartsParams) ([]
 	carModel := strings.TrimSpace(params.Model)
 	year := params.Year
 	category := strings.TrimSpace(params.Category)
+
+	// If user typed VIN into generic search, treat it as VIN search.
+	if vin == "" && looksLikeVIN(search) {
+		vin = strings.ToUpper(search)
+		search = ""
+	}
+	// Avoid applying text filter when search repeats VIN.
+	if vin != "" && strings.EqualFold(strings.TrimSpace(search), vin) {
+		search = ""
+	}
 
 	if vin != "" {
 		car, err := s.findCarByVIN(ctx, vin)

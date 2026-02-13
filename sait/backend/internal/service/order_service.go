@@ -52,7 +52,6 @@ func (s *OrderService) CreateOrder(ctx context.Context, userHex string, req mode
 
 	requestedBySKU := map[string]int{}
 	sanitizedItems := make([]model.OrderItem, 0, len(req.Items))
-	total := 0
 	for _, it := range req.Items {
 		sku := strings.TrimSpace(it.SKU)
 		if sku == "" || it.Qty <= 0 {
@@ -61,7 +60,6 @@ func (s *OrderService) CreateOrder(ctx context.Context, userHex string, req mode
 		it.SKU = sku
 		sanitizedItems = append(sanitizedItems, it)
 		requestedBySKU[sku] += it.Qty
-		total += it.PriceKZT * it.Qty
 	}
 	if len(sanitizedItems) == 0 {
 		return primitive.NilObjectID, ErrEmptyItems
@@ -75,9 +73,13 @@ func (s *OrderService) CreateOrder(ctx context.Context, userHex string, req mode
 	if err != nil {
 		return primitive.NilObjectID, err
 	}
+
+	partBySKU := map[string]model.PartDoc{}
 	availableBySKU := map[string]int{}
 	for _, p := range parts {
-		availableBySKU[strings.TrimSpace(p.SKU)] = p.StockQty
+		sku := strings.TrimSpace(p.SKU)
+		partBySKU[sku] = p
+		availableBySKU[sku] = p.StockQty
 	}
 	issues := make([]StockIssue, 0)
 	for sku, qty := range requestedBySKU {
@@ -92,6 +94,25 @@ func (s *OrderService) CreateOrder(ctx context.Context, userHex string, req mode
 	}
 	if len(issues) > 0 {
 		return primitive.NilObjectID, &InsufficientStockError{Issues: issues}
+	}
+
+	// Trust price from DB, not from client payload.
+	total := 0
+	pricedItems := make([]model.OrderItem, 0, len(sanitizedItems))
+	for _, it := range sanitizedItems {
+		part, ok := partBySKU[it.SKU]
+		if !ok {
+			continue
+		}
+		it.PriceKZT = part.PriceKZT
+		if strings.TrimSpace(it.Name) == "" {
+			it.Name = part.Name
+		}
+		total += it.PriceKZT * it.Qty
+		pricedItems = append(pricedItems, it)
+	}
+	if len(pricedItems) == 0 {
+		return primitive.NilObjectID, ErrEmptyItems
 	}
 
 	reserved := map[string]int{}
@@ -125,7 +146,7 @@ func (s *OrderService) CreateOrder(ctx context.Context, userHex string, req mode
 
 	oid, err := s.repo.InsertOrder(ctx, model.OrderDoc{
 		UserID:          userID,
-		Items:           sanitizedItems,
+		Items:           pricedItems,
 		TotalKZT:        total,
 		Status:          "pending",
 		ShippingAddress: req.ShippingAddress,

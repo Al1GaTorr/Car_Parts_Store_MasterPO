@@ -872,7 +872,7 @@ const AdminPanel: React.FC<{
   const delPart = async (id: string) => {
     if (!confirm('Удалить товар?')) return;
     try {
-      await adminDeletePart(id);
+      await AdminDeletePart(id);
       await load();
     } catch (e: any) {
       alert(e?.message || 'Не удалось удалить');
@@ -889,7 +889,7 @@ const AdminPanel: React.FC<{
         .split(',')
         .map((s) => s.trim())
         .filter(Boolean);
-      await adminCreatePart({
+      await AdminCreatePart({
         sku: newSku.trim(),
         name: newName.trim(),
         category: newCategory,

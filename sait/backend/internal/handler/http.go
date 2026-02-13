@@ -55,9 +55,6 @@ func partIDFromPath(path string) string {
 	if strings.HasPrefix(path, "/api/admin/parts/") {
 		return strings.TrimPrefix(path, "/api/admin/parts/")
 	}
-	if strings.HasPrefix(path, "/api/admin/parts/") {
-		return strings.TrimPrefix(path, "/api/admin/parts/")
-	}
 	return path
 }
 

@@ -3,7 +3,7 @@ import { CATEGORY_IMAGES, SUBCATEGORIES } from './constants';
 import { Part, User, CartItem, Order, PageView, PartCategory } from './types';
 import { fetchParts, fetchVehicleOptions } from './services/apiService';
 import { loginUser, registerUser, fetchMe, clearToken, getToken } from './services/authService';
-import { adminFetchParts, adminCreatePart, adminUpdatePart, adminDeletePart, adminFetchOrders, adminUpdateOrder, adminDeleteOrder } from './services/adminService';
+import { AdminFetchParts, AdminCreatePart, AdminUpdatePart, AdminDeletePart, AdminFetchOrders, AdminUpdateOrder, AdminDeleteOrder } from './services/adminService';
 import { createOrder } from './services/orderService';
 import { 
   ShoppingCart, 
@@ -783,9 +783,9 @@ const AdminPanel: React.FC<{
     setLoading(true);
     setErr('');
     try {
-      const items = await adminFetchParts();
+      const items = await AdminFetchParts();
       setDbParts(items);
-      const orders = await adminFetchOrders();
+      const orders = await AdminFetchOrders();
       setDbOrders(orders);
     } catch (e: any) {
       setErr(e?.message || 'Ошибка загрузки');
@@ -818,14 +818,14 @@ const AdminPanel: React.FC<{
         topMap.set(sku, prev);
       });
     });
-    const topProducts = Array.from(topMap.values()).sort((a, b) => b.revenue - a.revenue).slice(0, 5);
+    const topParts = Array.from(topMap.values()).sort((a, b) => b.revenue - a.revenue).slice(0, 5);
 
-    return { totalOrders, totalRevenue, avgOrder, pendingCount, lowStock, topProducts };
+    return { totalOrders, totalRevenue, avgOrder, pendingCount, lowStock, topParts };
   }, [dbOrders, dbParts]);
 
   const updateOrderStatus = async (id: string, status: string) => {
     try {
-      await adminUpdateOrder(id, { status });
+      await AdminUpdateOrder(id, { status });
       await load();
     } catch (e: any) {
       alert(e?.message || 'Не удалось обновить заказ');
@@ -835,7 +835,7 @@ const AdminPanel: React.FC<{
   const deleteOrder = async (id: string) => {
     if (!confirm('Удалить заказ?')) return;
     try {
-      await adminDeleteOrder(id);
+      await AdminDeleteOrder(id);
       await load();
     } catch (e: any) {
       alert(e?.message || 'Не удалось удалить заказ');
@@ -844,7 +844,7 @@ const AdminPanel: React.FC<{
 
   const updatePart = async (id: string, patch: any) => {
     try {
-      await adminUpdatePart(id, patch);
+      await AdminUpdatePart(id, patch);
       await load();
     } catch (e: any) {
       alert(e?.message || 'Не удалось обновить');
@@ -940,9 +940,9 @@ const AdminPanel: React.FC<{
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="bg-white border rounded p-4">
               <div className="font-bold mb-3">Топ товаров по выручке</div>
-              {analytics.topProducts.length === 0 && <div className="text-sm text-slate-600">Нет данных</div>}
+              {analytics.topParts.length === 0 && <div className="text-sm text-slate-600">Нет данных</div>}
               <div className="space-y-2">
-                {analytics.topProducts.map((p) => (
+                {analytics.topParts.map((p) => (
                   <div key={p.sku} className="flex items-center justify-between text-sm">
                     <div className="font-medium">{p.name}</div>
                     <div className="text-slate-600">{p.revenue} ₸</div>

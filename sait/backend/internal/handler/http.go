@@ -49,8 +49,8 @@ func requireMethod(w http.ResponseWriter, r *http.Request, method string) bool {
 }
 
 func partIDFromPath(path string) string {
-	if strings.HasPrefix(path, "/api/admin/products/") {
-		return strings.TrimPrefix(path, "/api/admin/products/")
+	if strings.HasPrefix(path, "/api/admin/parts/") {
+		return strings.TrimPrefix(path, "/api/admin/parts/")
 	}
 	if strings.HasPrefix(path, "/api/admin/parts/") {
 		return strings.TrimPrefix(path, "/api/admin/parts/")
@@ -381,31 +381,6 @@ func (h *Handler) Routes() http.Handler {
 		}
 		if r.Method == http.MethodDelete {
 			h.requireAdmin(h.adminDeleteOrder)(w, r)
-			return
-		}
-		w.WriteHeader(http.StatusMethodNotAllowed)
-	})
-
-	mux.HandleFunc("/api/admin/products", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == http.MethodGet {
-			h.requireAdmin(h.adminListParts)(w, r)
-			return
-		}
-		if r.Method == http.MethodPost {
-			h.requireAdmin(h.adminInsertPart)(w, r)
-			return
-		}
-		w.WriteHeader(http.StatusMethodNotAllowed)
-	})
-
-	// Backward-compatible route; semantically this endpoint manages parts.
-	mux.HandleFunc("/api/admin/products/", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == http.MethodPatch || r.Method == http.MethodPut {
-			h.requireAdmin(h.adminUpdatePart)(w, r)
-			return
-		}
-		if r.Method == http.MethodDelete {
-			h.requireAdmin(h.adminDeletePart)(w, r)
 			return
 		}
 		w.WriteHeader(http.StatusMethodNotAllowed)

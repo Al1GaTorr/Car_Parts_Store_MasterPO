@@ -8,15 +8,15 @@ async function authedFetch(url: string, init?: RequestInit) {
   return fetch(url, { ...init, headers });
 }
 
-export async function adminFetchProducts(): Promise<DBPart[]> {
-  const res = await authedFetch('/api/admin/products');
+export async function adminFetchParts(): Promise<DBPart[]> {
+  const res = await authedFetch('/api/admin/parts');
   const data = await res.json();
-  if (!res.ok) throw new Error(data?.error || 'Admin products failed');
+  if (!res.ok) throw new Error(data?.error || 'Admin parts failed');
   return data.items || [];
 }
 
-export async function adminCreateProduct(p: any) {
-  const res = await authedFetch('/api/admin/products', {
+export async function adminCreatePart(p: any) {
+  const res = await authedFetch('/api/admin/parts', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(p),
@@ -26,8 +26,8 @@ export async function adminCreateProduct(p: any) {
   return data;
 }
 
-export async function adminUpdateProduct(id: string, patch: any) {
-  const res = await authedFetch(`/api/admin/products/${id}`, {
+export async function adminUpdatePart(id: string, patch: any) {
+  const res = await authedFetch(`/api/admin/parts/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(patch),
@@ -37,8 +37,8 @@ export async function adminUpdateProduct(id: string, patch: any) {
   return data;
 }
 
-export async function adminDeleteProduct(id: string) {
-  const res = await authedFetch(`/api/admin/products/${id}`, { method: 'DELETE' });
+export async function adminDeletePart(id: string) {
+  const res = await authedFetch(`/api/admin/parts/${id}`, { method: 'DELETE' });
   const data = await res.json();
   if (!res.ok) throw new Error(data?.error || 'Delete failed');
   return data;
@@ -70,7 +70,11 @@ export async function adminDeleteOrder(id: string) {
 }
 
 // Backward-compatible aliases with part naming.
-export const adminFetchParts = adminFetchProducts;
-export const adminCreatePart = adminCreateProduct;
-export const adminUpdatePart = adminUpdateProduct;
-export const adminDeletePart = adminDeleteProduct;
+export const AdminFetchParts = adminFetchParts;
+export const AdminCreatePart = adminCreatePart;
+export const AdminUpdatePart = adminUpdatePart;
+export const AdminDeletePart = adminDeletePart;
+
+export const AdminFetchOrders = adminFetchOrders;
+export const AdminUpdateOrder = adminUpdateOrder;
+export const AdminDeleteOrder = adminDeleteOrder;

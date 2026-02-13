@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { CATEGORY_IMAGES, SUBCATEGORIES } from './constants';
 import { Part, User, CartItem, Order, PageView, PartCategory } from './types';
-import { fetchParts, fetchVehicleOptions } from './services/apiService';
+import { fetchParts, fetchVehicleMakes, fetchModelsByMake, fetchYearsByMakeModel } from './services/apiService';
 import { loginUser, registerUser, fetchMe, clearToken, getToken } from './services/authService';
 import { AdminFetchParts, AdminCreatePart, AdminUpdatePart, AdminDeletePart, AdminFetchOrders, AdminUpdateOrder, AdminDeleteOrder } from './services/adminService';
 import { createOrder } from './services/orderService';
@@ -144,10 +144,14 @@ const HeroSection: React.FC<{
   setMake: (m: string) => void;
   model: string;
   setModel: (m: string) => void;
+  year: string;
+  setYear: (y: string) => void;
   makes: string[];
   modelsByMake: Record<string, string[]>;
-}> = ({ vin, setVin, onSearch, make, setMake, model, setModel, makes, modelsByMake }) => {
+  yearsByMakeModel: Record<string, number[]>;
+}> = ({ vin, setVin, onSearch, make, setMake, model, setModel, year, setYear, makes, modelsByMake, yearsByMakeModel }) => {
   const availableModels = modelsByMake[make] || [];
+  const availableYears = yearsByMakeModel[`${make}::${model}`] || [];
 
   return (
     <div className="bg-white pt-6 pb-2 border-b border-slate-200">
@@ -191,7 +195,7 @@ const HeroSection: React.FC<{
                   <select 
                     className="col-span-3 border border-slate-300 bg-white rounded px-3 py-2 w-full text-sm outline-none focus:border-slate-500"
                     value={make}
-                    onChange={(e) => { setMake(e.target.value); setModel('All'); }}
+                    onChange={(e) => { setMake(e.target.value); setModel('All'); setYear('All'); }}
                   >
                     <option value="Universal">Не выбрано</option>
                     {makes.map(m => (
@@ -204,12 +208,26 @@ const HeroSection: React.FC<{
                   <select 
                     className="col-span-3 border border-slate-300 bg-white rounded px-3 py-2 w-full text-sm outline-none focus:border-slate-500"
                     value={model}
-                    onChange={(e) => setModel(e.target.value)}
+                    onChange={(e) => { setModel(e.target.value); setYear('All'); }}
                     disabled={make === 'Universal'}
                   >
                     <option value="All">Не выбрано</option>
                     {availableModels.map((m: string) => (
                       <option key={m} value={m}>{m}</option>
+                    ))}
+                  </select>
+               </div>
+               <div className="grid grid-cols-4 items-center gap-4">
+                  <label className="font-bold text-sm text-slate-700 col-span-1">Год</label>
+                  <select
+                    className="col-span-3 border border-slate-300 bg-white rounded px-3 py-2 w-full text-sm outline-none focus:border-slate-500"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
+                    disabled={make === 'Universal' || model === 'All'}
+                  >
+                    <option value="All">Не выбрано</option>
+                    {availableYears.map((y) => (
+                      <option key={y} value={String(y)}>{y}</option>
                     ))}
                   </select>
                </div>
@@ -1095,8 +1113,10 @@ const App: React.FC = () => {
   const [vin, setVin] = useState('');
   const [make, setMake] = useState('Universal');
   const [model, setModel] = useState('All');
+  const [year, setYear] = useState('All');
   const [vehicleMakes, setVehicleMakes] = useState<string[]>([]);
   const [modelsByMake, setModelsByMake] = useState<Record<string, string[]>>({});
+  const [yearsByMakeModel, setYearsByMakeModel] = useState<Record<string, number[]>>({});
   const [category, setCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [issue, setIssue] = useState<string>('');
@@ -1143,6 +1163,7 @@ const App: React.FC = () => {
         q: searchQuery || undefined,
         make,
         model,
+        year,
         category,
       });
       setParts(items);
@@ -1152,7 +1173,7 @@ const App: React.FC = () => {
     } finally {
       setIsLoadingParts(false);
     }
-  }, [vin, issue, searchQuery, make, model, category]);
+  }, [vin, issue, searchQuery, make, model, year, category]);
 
   const handleAddToCart = (part: Part) => {
     if (!user) {
@@ -1215,29 +1236,72 @@ const App: React.FC = () => {
     }
   }, []);
 
-  // Load selectable vehicle makes/models from backend
+  // Load selectable vehicle makes from backend once.
   useEffect(() => {
     let cancelled = false;
-    fetchVehicleOptions()
-      .then((data) => {
+    fetchVehicleMakes()
+      .then((makes) => {
         if (cancelled) return;
-        setVehicleMakes(data.makes || []);
-        setModelsByMake(data.modelsByMake || {});
+        setVehicleMakes(makes || []);
       })
       .catch(() => {
         if (cancelled) return;
         setVehicleMakes([]);
-        setModelsByMake({});
       });
     return () => {
       cancelled = true;
     };
   }, []);
 
-  // 2) Load parts from backend whenever filters change
+  // Load models lazily: only when a make is selected.
   useEffect(() => {
+    if (!make || make === 'Universal') return;
+    if (modelsByMake[make]) return;
+
+    let cancelled = false;
+    fetchModelsByMake(make)
+      .then((models) => {
+        if (cancelled) return;
+        setModelsByMake((prev) => ({ ...prev, [make]: models || [] }));
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setModelsByMake((prev) => ({ ...prev, [make]: [] }));
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [make, modelsByMake]);
+
+  // Load years lazily: only when both make and model are selected.
+  useEffect(() => {
+    if (!make || make === 'Universal') return;
+    if (!model || model === 'All') return;
+    const key = `${make}::${model}`;
+    if (yearsByMakeModel[key]) return;
+
+    let cancelled = false;
+    fetchYearsByMakeModel(make, model)
+      .then((years) => {
+        if (cancelled) return;
+        setYearsByMakeModel((prev) => ({ ...prev, [key]: years || [] }));
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setYearsByMakeModel((prev) => ({ ...prev, [key]: [] }));
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [make, model, yearsByMakeModel]);
+
+  // Load parts only in Catalog view.
+  useEffect(() => {
+    if (currentView !== PageView.CATALOG) return;
     loadParts();
-  }, [loadParts]);
+  }, [currentView, loadParts]);
 
   
   return (
@@ -1272,8 +1336,10 @@ const App: React.FC = () => {
               onSearch={handleSearch}
               make={make} setMake={setMake}
               model={model} setModel={setModel}
+              year={year} setYear={setYear}
               makes={vehicleMakes}
               modelsByMake={modelsByMake}
+              yearsByMakeModel={yearsByMakeModel}
             />
             <CategoryGrid 
               onSelectCategory={(cat) => { setCategory(cat); setCurrentView(PageView.CATALOG); }} 

@@ -67,6 +67,7 @@ export async function fetchParts(params: {
   q?: string;
   make?: string;
   model?: string;
+  year?: string;
   category?: string | null;
 }): Promise<Part[]> {
   const usp = new URLSearchParams();
@@ -75,6 +76,7 @@ export async function fetchParts(params: {
   if (params.q) usp.set('q', params.q);
   if (params.make && params.make !== 'Universal') usp.set('make', params.make);
   if (params.model && params.model !== 'All') usp.set('model', params.model);
+  if (params.year && params.year !== 'All') usp.set('year', params.year);
   if (params.category) usp.set('category', params.category);
 
   const res = await fetch(`/api/parts?${usp.toString()}`);
@@ -83,32 +85,103 @@ export async function fetchParts(params: {
   return (data.items || []).map(mapDbPart);
 }
 
-export async function fetchVehicleOptions(): Promise<{
-  makes: string[];
-  modelsByMake: Record<string, string[]>;
-}> {
-  const res = await fetch('/api/parts');
-  if (!res.ok) throw new Error(`API error: ${res.status}`);
-  const data = (await res.json()) as { items: DBPart[] };
-  const items = data.items || [];
+let makesCache: string[] | null = null;
+let makesInFlight: Promise<string[]> | null = null;
+const modelsCacheByMake = new Map<string, string[]>();
+const modelsInFlightByMake = new Map<string, Promise<string[]>>();
+const yearsCacheByMakeModel = new Map<string, number[]>();
+const yearsInFlightByMakeModel = new Map<string, Promise<number[]>>();
 
-  const modelsByMake = new Map<string, Set<string>>();
-  for (const p of items) {
-    const comp = p.compatibility;
-    if (comp?.type !== 'vehicle' || !Array.isArray(comp.vehicles)) continue;
-    for (const v of comp.vehicles) {
-      const make = (v.make || '').trim();
-      const model = (v.model || '').trim();
-      if (!make || !model) continue;
-      if (!modelsByMake.has(make)) modelsByMake.set(make, new Set<string>());
-      modelsByMake.get(make)?.add(model);
-    }
+function normalizeStringItems(items?: unknown[]): string[] {
+  return (items || [])
+    .map((v) => String(v || '').trim())
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
+}
+
+export async function fetchVehicleMakes(): Promise<string[]> {
+  if (makesCache) return makesCache;
+  if (makesInFlight) return makesInFlight;
+
+  makesInFlight = (async () => {
+    const res = await fetch('/api/cars/makes');
+    if (!res.ok) throw new Error(`API error: ${res.status}`);
+    const data = (await res.json()) as { items?: unknown[] };
+    const makes = normalizeStringItems(data.items);
+    makesCache = makes;
+    return makes;
+  })();
+
+  try {
+    return await makesInFlight;
+  } finally {
+    makesInFlight = null;
+  }
+}
+
+export async function fetchModelsByMake(make: string): Promise<string[]> {
+  const makeName = String(make || '').trim();
+  if (!makeName) return [];
+
+  if (modelsCacheByMake.has(makeName)) {
+    return modelsCacheByMake.get(makeName) || [];
+  }
+  if (modelsInFlightByMake.has(makeName)) {
+    return modelsInFlightByMake.get(makeName) || [];
   }
 
-  const makes = Array.from(modelsByMake.keys()).sort((a, b) => a.localeCompare(b));
-  const out: Record<string, string[]> = {};
-  for (const m of makes) {
-    out[m] = Array.from(modelsByMake.get(m) || []).sort((a, b) => a.localeCompare(b));
+  const p = (async () => {
+    const qs = new URLSearchParams({ make: makeName });
+    const res = await fetch(`/api/cars/models?${qs.toString()}`);
+    if (!res.ok) throw new Error(`API error: ${res.status}`);
+    const data = (await res.json()) as { items?: unknown[] };
+    const models = normalizeStringItems(data.items);
+    modelsCacheByMake.set(makeName, models);
+    return models;
+  })();
+
+  modelsInFlightByMake.set(makeName, p);
+  try {
+    return await p;
+  } finally {
+    modelsInFlightByMake.delete(makeName);
   }
-  return { makes, modelsByMake: out };
+}
+
+function normalizeNumberItems(items?: unknown[]): number[] {
+  return (items || [])
+    .map((v) => Number(v))
+    .filter((v) => Number.isFinite(v))
+    .sort((a, b) => a - b);
+}
+
+export async function fetchYearsByMakeModel(make: string, model: string): Promise<number[]> {
+  const makeName = String(make || '').trim();
+  const modelName = String(model || '').trim();
+  if (!makeName || !modelName) return [];
+
+  const key = `${makeName}::${modelName}`;
+  if (yearsCacheByMakeModel.has(key)) {
+    return yearsCacheByMakeModel.get(key) || [];
+  }
+  if (yearsInFlightByMakeModel.has(key)) {
+    return yearsInFlightByMakeModel.get(key) || [];
+  }
+
+  const p = (async () => {
+    const qs = new URLSearchParams({ make: makeName, model: modelName });
+    const res = await fetch(`/api/cars/years?${qs.toString()}`);
+    if (!res.ok) throw new Error(`API error: ${res.status}`);
+    const data = (await res.json()) as { items?: unknown[] };
+    const years = normalizeNumberItems(data.items);
+    yearsCacheByMakeModel.set(key, years);
+    return years;
+  })();
+
+  yearsInFlightByMakeModel.set(key, p);
+  try {
+    return await p;
+  } finally {
+    yearsInFlightByMakeModel.delete(key);
+  }
 }

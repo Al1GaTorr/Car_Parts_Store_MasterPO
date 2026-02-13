@@ -50,6 +50,30 @@
             "header": [],
             "url": "{{baseUrl}}/api/parts?vin=JTDBR32E720041922&issue=brake_noise&q=oil&make=Toyota&model=Camry&category=%D0%A2%D0%BE%D1%80%D0%BC%D0%BE%D0%B7%D0%B0"
           }
+        },
+        {
+          "name": "List Car Makes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/cars/makes"
+          }
+        },
+        {
+          "name": "List Car Models By Make",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/cars/models?make=Toyota"
+          }
+        },
+        {
+          "name": "List Car Years By Make And Model",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/cars/years?make=Toyota&model=Camry"
+          }
         }
       ]
     },

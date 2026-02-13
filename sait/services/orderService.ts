@@ -1,5 +1,6 @@
 import { CartItem } from '../types';
 import { getToken } from './authService';
+import { apiUrl } from './http';
 
 export async function createOrder(payload: { cart: CartItem[]; shippingAddress: string; contactInfo: string }) {
   const token = getToken();
@@ -11,7 +12,7 @@ export async function createOrder(payload: { cart: CartItem[]; shippingAddress: 
     qty: i.quantity,
     image: i.image,
   }));
-  const res = await fetch('/api/orders', {
+  const res = await fetch(apiUrl('/api/orders'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify({ items, shippingAddress: payload.shippingAddress, contactInfo: payload.contactInfo }),

@@ -1,11 +1,12 @@
 import { getToken } from './authService';
 import { DBPart } from './apiService';
+import { apiUrl } from './http';
 
 async function authedFetch(url: string, init?: RequestInit) {
   const token = getToken();
   const headers: Record<string, string> = { ...(init?.headers as any) };
   if (token) headers['Authorization'] = `Bearer ${token}`;
-  return fetch(url, { ...init, headers });
+  return fetch(apiUrl(url), { ...init, headers });
 }
 
 export async function adminFetchParts(): Promise<DBPart[]> {

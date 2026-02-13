@@ -1,4 +1,5 @@
 import { Part, PartCategory } from '../types';
+import { apiUrl } from './http';
 
 export type VehicleFit = { make: string; model: string; year_from: number; year_to: number };
 
@@ -79,7 +80,7 @@ export async function fetchParts(params: {
   if (params.year && params.year !== 'All') usp.set('year', params.year);
   if (params.category) usp.set('category', params.category);
 
-  const res = await fetch(`/api/parts?${usp.toString()}`);
+  const res = await fetch(apiUrl(`/api/parts?${usp.toString()}`));
   if (!res.ok) throw new Error(`API error: ${res.status}`);
   const data = (await res.json()) as { items: DBPart[] };
   return (data.items || []).map(mapDbPart);
@@ -104,7 +105,7 @@ export async function fetchVehicleMakes(): Promise<string[]> {
   if (makesInFlight) return makesInFlight;
 
   makesInFlight = (async () => {
-    const res = await fetch('/api/cars/makes');
+    const res = await fetch(apiUrl('/api/cars/makes'));
     if (!res.ok) throw new Error(`API error: ${res.status}`);
     const data = (await res.json()) as { items?: unknown[] };
     const makes = normalizeStringItems(data.items);
@@ -132,7 +133,7 @@ export async function fetchModelsByMake(make: string): Promise<string[]> {
 
   const p = (async () => {
     const qs = new URLSearchParams({ make: makeName });
-    const res = await fetch(`/api/cars/models?${qs.toString()}`);
+    const res = await fetch(apiUrl(`/api/cars/models?${qs.toString()}`));
     if (!res.ok) throw new Error(`API error: ${res.status}`);
     const data = (await res.json()) as { items?: unknown[] };
     const models = normalizeStringItems(data.items);
@@ -170,7 +171,7 @@ export async function fetchYearsByMakeModel(make: string, model: string): Promis
 
   const p = (async () => {
     const qs = new URLSearchParams({ make: makeName, model: modelName });
-    const res = await fetch(`/api/cars/years?${qs.toString()}`);
+    const res = await fetch(apiUrl(`/api/cars/years?${qs.toString()}`));
     if (!res.ok) throw new Error(`API error: ${res.status}`);
     const data = (await res.json()) as { items?: unknown[] };
     const years = normalizeNumberItems(data.items);

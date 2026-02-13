@@ -1,0 +1,2066 @@
+[
+  {
+    "vin": "N4E11XETZAXRLA3W3",
+    "make": "Mercedes-Benz",
+    "model": "C-Class",
+    "year": 2010,
+    "engine": "1.6",
+    "fuel": "petrol",
+    "mileage_km": 165138,
+    "owner": {
+      "name": "User1",
+      "phone": "+77811313714"
+    },
+    "last_sync_at": "2026-01-27T21:47:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2024-03-21",
+        "work": "Oil change",
+        "mileage_km": 148582,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "S2M24A5G2NJR7NCHU",
+    "make": "Honda",
+    "model": "Civic",
+    "year": 2009,
+    "engine": "1.8",
+    "fuel": "petrol",
+    "mileage_km": 24187,
+    "owner": {
+      "name": "User2",
+      "phone": "+77728535676"
+    },
+    "last_sync_at": "2026-02-08T06:32:00",
+    "issues": [
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      },
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-10-08",
+        "work": "Coolant top-up",
+        "mileage_km": 0,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2025-06-25",
+        "work": "Air filter replacement",
+        "mileage_km": 0,
+        "station": "STO Center"
+      },
+      {
+        "date": "2025-04-04",
+        "work": "Air filter replacement",
+        "mileage_km": 2183,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2024-09-08",
+        "work": "Brake pads replacement",
+        "mileage_km": 18231,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "CGWK9Y69XRF8P66CE",
+    "make": "Mercedes-Benz",
+    "model": "GLA",
+    "year": 2020,
+    "engine": "3.0",
+    "fuel": "diesel",
+    "mileage_km": 54919,
+    "owner": {
+      "name": "User3",
+      "phone": "+77088858394"
+    },
+    "last_sync_at": "2026-02-05T14:10:00",
+    "issues": [
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      },
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      },
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-12-13",
+        "work": "Brake pads replacement",
+        "mileage_km": 18732,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "ZKSRJBUH8NWUTWRHD",
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 2019,
+    "engine": "2.5",
+    "fuel": "hybrid",
+    "mileage_km": 99761,
+    "owner": {
+      "name": "User4",
+      "phone": "+77059012670"
+    },
+    "last_sync_at": "2026-02-08T23:14:00",
+    "issues": [
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      },
+      {
+        "code": "oil_service_due",
+        "title": "Oil change due",
+        "severity": "medium"
+      },
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-09-30",
+        "work": "Battery replacement",
+        "mileage_km": 89398,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2025-11-22",
+        "work": "Coolant top-up",
+        "mileage_km": 90046,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2024-11-24",
+        "work": "Diagnostics",
+        "mileage_km": 48660,
+        "station": "STO Center"
+      },
+      {
+        "date": "2026-01-19",
+        "work": "Brake pads replacement",
+        "mileage_km": 59784,
+        "station": "ProService"
+      }
+    ]
+  },
+  {
+    "vin": "2NS93G85ZHH4L69YS",
+    "make": "Honda",
+    "model": "Civic",
+    "year": 2016,
+    "engine": "2.5",
+    "fuel": "petrol",
+    "mileage_km": 239723,
+    "owner": {
+      "name": "User5",
+      "phone": "+77483492423"
+    },
+    "last_sync_at": "2026-01-28T01:43:00",
+    "issues": [
+      {
+        "code": "oil_service_due",
+        "title": "Oil change due",
+        "severity": "medium"
+      },
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      },
+      {
+        "code": "spark_plugs_due",
+        "title": "Spark plugs service due",
+        "severity": "low"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-04-06",
+        "work": "Brake pads replacement",
+        "mileage_km": 225578,
+        "station": "ProService"
+      },
+      {
+        "date": "2025-07-06",
+        "work": "Oil change",
+        "mileage_km": 208552,
+        "station": "STO Center"
+      },
+      {
+        "date": "2025-04-13",
+        "work": "Oil change",
+        "mileage_km": 193338,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2025-03-06",
+        "work": "Battery replacement",
+        "mileage_km": 215627,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "PWERVSMVXN5K6KVCP",
+    "make": "Hyundai",
+    "model": "Tucson",
+    "year": 2008,
+    "engine": "2.0",
+    "fuel": "diesel",
+    "mileage_km": 76877,
+    "owner": {
+      "name": "User6",
+      "phone": "+77632562000"
+    },
+    "last_sync_at": "2026-01-29T18:04:00",
+    "issues": [
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      },
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      },
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-10-16",
+        "work": "Oil change",
+        "mileage_km": 8997,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2025-06-13",
+        "work": "Brake pads replacement",
+        "mileage_km": 45011,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2024-01-25",
+        "work": "Coolant top-up",
+        "mileage_km": 59593,
+        "station": "STO Center"
+      },
+      {
+        "date": "2024-02-21",
+        "work": "Battery replacement",
+        "mileage_km": 28653,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "2XVBJLEWZNGWKP5C6",
+    "make": "Lada",
+    "model": "Granta",
+    "year": 2016,
+    "engine": "1.6",
+    "fuel": "petrol",
+    "mileage_km": 241822,
+    "owner": {
+      "name": "User7",
+      "phone": "+77109525746"
+    },
+    "last_sync_at": "2026-02-06T11:57:00",
+    "issues": [
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-12-02",
+        "work": "Oil change",
+        "mileage_km": 187805,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2025-04-03",
+        "work": "Coolant top-up",
+        "mileage_km": 205169,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2025-10-29",
+        "work": "Coolant top-up",
+        "mileage_km": 196700,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "RG555E08JLEXWVSCA",
+    "make": "Kia",
+    "model": "Cerato",
+    "year": 2015,
+    "engine": "2.0",
+    "fuel": "petrol",
+    "mileage_km": 186392,
+    "owner": {
+      "name": "User8",
+      "phone": "+77363648463"
+    },
+    "last_sync_at": "2026-02-09T21:59:00",
+    "issues": [
+      {
+        "code": "coolant_low",
+        "title": "Coolant level low",
+        "severity": "medium"
+      },
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-10-31",
+        "work": "Diagnostics",
+        "mileage_km": 143278,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2024-05-04",
+        "work": "Oil change",
+        "mileage_km": 164959,
+        "station": "ProService"
+      }
+    ]
+  },
+  {
+    "vin": "46YEDCG2GPTB0S9GK",
+    "make": "Kia",
+    "model": "Sportage",
+    "year": 2020,
+    "engine": "2.0",
+    "fuel": "hybrid",
+    "mileage_km": 23451,
+    "owner": {
+      "name": "User9",
+      "phone": "+77855039938"
+    },
+    "last_sync_at": "2026-02-07T00:17:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2024-09-16",
+        "work": "Oil change",
+        "mileage_km": 0,
+        "station": "ProService"
+      },
+      {
+        "date": "2024-01-24",
+        "work": "Air filter replacement",
+        "mileage_km": 0,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2025-12-10",
+        "work": "Battery replacement",
+        "mileage_km": 0,
+        "station": "Dealer Service"
+      }
+    ]
+  },
+  {
+    "vin": "U2L7WEYM25DLP5LAZ",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2019,
+    "engine": "1.6",
+    "fuel": "hybrid",
+    "mileage_km": 58373,
+    "owner": {
+      "name": "User10",
+      "phone": "+77715787633"
+    },
+    "last_sync_at": "2026-01-31T07:36:00",
+    "issues": [
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      },
+      {
+        "code": "oil_service_due",
+        "title": "Oil change due",
+        "severity": "medium"
+      },
+      {
+        "code": "spark_plugs_due",
+        "title": "Spark plugs service due",
+        "severity": "low"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-01-17",
+        "work": "Diagnostics",
+        "mileage_km": 44049,
+        "station": "STO Center"
+      },
+      {
+        "date": "2024-11-30",
+        "work": "Brake pads replacement",
+        "mileage_km": 8515,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2025-06-17",
+        "work": "Air filter replacement",
+        "mileage_km": 42321,
+        "station": "Dealer Service"
+      }
+    ]
+  },
+  {
+    "vin": "SYZF8V01RS6Y1ALSK",
+    "make": "Kia",
+    "model": "Sportage",
+    "year": 2017,
+    "engine": "1.6",
+    "fuel": "petrol",
+    "mileage_km": 246845,
+    "owner": {
+      "name": "User11",
+      "phone": "+77956567680"
+    },
+    "last_sync_at": "2026-02-01T21:03:00",
+    "issues": [
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      },
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-04-10",
+        "work": "Diagnostics",
+        "mileage_km": 233414,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2024-11-20",
+        "work": "Diagnostics",
+        "mileage_km": 208446,
+        "station": "ProService"
+      }
+    ]
+  },
+  {
+    "vin": "T4CF6CRR3GJS9070N",
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2008,
+    "engine": "2.0",
+    "fuel": "hybrid",
+    "mileage_km": 135094,
+    "owner": {
+      "name": "User12",
+      "phone": "+77325229649"
+    },
+    "last_sync_at": "2026-02-09T04:09:00",
+    "issues": [
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-05-23",
+        "work": "Battery replacement",
+        "mileage_km": 81428,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2024-05-02",
+        "work": "Brake pads replacement",
+        "mileage_km": 84993,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "D915UE6YGYJE55GR0",
+    "make": "Mercedes-Benz",
+    "model": "GLA",
+    "year": 2022,
+    "engine": "1.6",
+    "fuel": "diesel",
+    "mileage_km": 44043,
+    "owner": {
+      "name": "User13",
+      "phone": "+77856751900"
+    },
+    "last_sync_at": "2026-02-02T15:52:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2025-01-12",
+        "work": "Diagnostics",
+        "mileage_km": 0,
+        "station": "STO Center"
+      },
+      {
+        "date": "2025-03-13",
+        "work": "Brake pads replacement",
+        "mileage_km": 14066,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2024-11-12",
+        "work": "Diagnostics",
+        "mileage_km": 42759,
+        "station": "ProService"
+      }
+    ]
+  },
+  {
+    "vin": "5DVJ094DES65LMALY",
+    "make": "Toyota",
+    "model": "RAV4",
+    "year": 2022,
+    "engine": "1.8",
+    "fuel": "diesel",
+    "mileage_km": 157049,
+    "owner": {
+      "name": "User14",
+      "phone": "+77424538192"
+    },
+    "last_sync_at": "2026-01-28T10:01:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2025-05-31",
+        "work": "Oil change",
+        "mileage_km": 111531,
+        "station": "ProService"
+      },
+      {
+        "date": "2024-10-01",
+        "work": "Oil change",
+        "mileage_km": 116633,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2025-09-11",
+        "work": "Oil change",
+        "mileage_km": 122209,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2024-09-07",
+        "work": "Brake pads replacement",
+        "mileage_km": 145680,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "B8TXHE5E2H0T59VWH",
+    "make": "Kia",
+    "model": "Cerato",
+    "year": 2018,
+    "engine": "1.6",
+    "fuel": "petrol",
+    "mileage_km": 184016,
+    "owner": {
+      "name": "User15",
+      "phone": "+77467691139"
+    },
+    "last_sync_at": "2026-02-03T09:30:00",
+    "issues": [
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-06-01",
+        "work": "Brake pads replacement",
+        "mileage_km": 177977,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2025-08-07",
+        "work": "Coolant top-up",
+        "mileage_km": 123909,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2025-04-05",
+        "work": "Battery replacement",
+        "mileage_km": 157815,
+        "station": "Dealer Service"
+      }
+    ]
+  },
+  {
+    "vin": "VWS22EV4PMUM86NZC",
+    "make": "Mercedes-Benz",
+    "model": "Sprinter",
+    "year": 2020,
+    "engine": "1.6",
+    "fuel": "hybrid",
+    "mileage_km": 178382,
+    "owner": {
+      "name": "User16",
+      "phone": "+77354284670"
+    },
+    "last_sync_at": "2026-01-31T12:48:00",
+    "issues": [
+      {
+        "code": "oil_service_due",
+        "title": "Oil change due",
+        "severity": "medium"
+      },
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      },
+      {
+        "code": "spark_plugs_due",
+        "title": "Spark plugs service due",
+        "severity": "low"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-09-08",
+        "work": "Oil change",
+        "mileage_km": 167617,
+        "station": "ProService"
+      },
+      {
+        "date": "2025-10-10",
+        "work": "Air filter replacement",
+        "mileage_km": 157216,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "F217ZHWRXJXXAF3ZY",
+    "make": "Mercedes-Benz",
+    "model": "E-Class",
+    "year": 2010,
+    "engine": "1.6",
+    "fuel": "hybrid",
+    "mileage_km": 195989,
+    "owner": {
+      "name": "User17",
+      "phone": "+77769968144"
+    },
+    "last_sync_at": "2026-02-03T10:45:00",
+    "issues": [
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-12-15",
+        "work": "Coolant top-up",
+        "mileage_km": 157837,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "UP66YG11ZN2F7H5MA",
+    "make": "Toyota",
+    "model": "Land Cruiser",
+    "year": 2010,
+    "engine": "2.5",
+    "fuel": "hybrid",
+    "mileage_km": 161080,
+    "owner": {
+      "name": "User18",
+      "phone": "+77914961425"
+    },
+    "last_sync_at": "2026-01-31T03:13:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2024-09-24",
+        "work": "Diagnostics",
+        "mileage_km": 148981,
+        "station": "ProService"
+      }
+    ]
+  },
+  {
+    "vin": "Y97RNJ7LEDNFXTGBZ",
+    "make": "Nissan",
+    "model": "Qashqai",
+    "year": 2011,
+    "engine": "1.8",
+    "fuel": "diesel",
+    "mileage_km": 86830,
+    "owner": {
+      "name": "User19",
+      "phone": "+77067365818"
+    },
+    "last_sync_at": "2026-02-05T05:17:00",
+    "issues": [
+      {
+        "code": "spark_plugs_due",
+        "title": "Spark plugs service due",
+        "severity": "low"
+      },
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-12-28",
+        "work": "Oil change",
+        "mileage_km": 53418,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "2NRZRMY26T939X66U",
+    "make": "Honda",
+    "model": "Accord",
+    "year": 2018,
+    "engine": "1.8",
+    "fuel": "hybrid",
+    "mileage_km": 18635,
+    "owner": {
+      "name": "User20",
+      "phone": "+77177640658"
+    },
+    "last_sync_at": "2026-02-06T18:32:00",
+    "issues": [
+      {
+        "code": "oil_service_due",
+        "title": "Oil change due",
+        "severity": "medium"
+      },
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      },
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-06-18",
+        "work": "Diagnostics",
+        "mileage_km": 0,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "WKPW7DPM3N00UBN02",
+    "make": "Kia",
+    "model": "Sorento",
+    "year": 2017,
+    "engine": "2.0",
+    "fuel": "petrol",
+    "mileage_km": 55213,
+    "owner": {
+      "name": "User21",
+      "phone": "+77003545427"
+    },
+    "last_sync_at": "2026-02-03T15:06:00",
+    "issues": [
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      },
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-06-18",
+        "work": "Coolant top-up",
+        "mileage_km": 36261,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2024-12-27",
+        "work": "Diagnostics",
+        "mileage_km": 2121,
+        "station": "ProService"
+      }
+    ]
+  },
+  {
+    "vin": "D55RHA9TNJ99YAUUR",
+    "make": "Lada",
+    "model": "Niva",
+    "year": 2009,
+    "engine": "3.0",
+    "fuel": "petrol",
+    "mileage_km": 222273,
+    "owner": {
+      "name": "User22",
+      "phone": "+77556517190"
+    },
+    "last_sync_at": "2026-02-07T04:37:00",
+    "issues": [
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      },
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-02-18",
+        "work": "Diagnostics",
+        "mileage_km": 169956,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2024-11-12",
+        "work": "Diagnostics",
+        "mileage_km": 180877,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2024-01-05",
+        "work": "Oil change",
+        "mileage_km": 219723,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2024-01-02",
+        "work": "Coolant top-up",
+        "mileage_km": 165893,
+        "station": "Dealer Service"
+      }
+    ]
+  },
+  {
+    "vin": "XM2Z1T7Y6CGYULNGP",
+    "make": "Hyundai",
+    "model": "Santa Fe",
+    "year": 2025,
+    "engine": "1.6",
+    "fuel": "petrol",
+    "mileage_km": 181272,
+    "owner": {
+      "name": "User23",
+      "phone": "+77534472261"
+    },
+    "last_sync_at": "2026-01-31T04:18:00",
+    "issues": [
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      },
+      {
+        "code": "check_engine",
+        "title": "Check engine light",
+        "severity": "high",
+        "dtc": {
+          "code": "P0562",
+          "desc": "System Voltage Low"
+        }
+      },
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-05-20",
+        "work": "Air filter replacement",
+        "mileage_km": 157977,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "X2XK5B86VLSFULTNC",
+    "make": "Kia",
+    "model": "Sportage",
+    "year": 2019,
+    "engine": "3.0",
+    "fuel": "hybrid",
+    "mileage_km": 154837,
+    "owner": {
+      "name": "User24",
+      "phone": "+77406410762"
+    },
+    "last_sync_at": "2026-01-31T23:47:00",
+    "issues": [
+      {
+        "code": "check_engine",
+        "title": "Check engine light",
+        "severity": "high",
+        "dtc": {
+          "code": "P0401",
+          "desc": "Exhaust Gas Recirculation Flow Insufficient"
+        }
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-12-28",
+        "work": "Oil change",
+        "mileage_km": 113084,
+        "station": "STO Center"
+      },
+      {
+        "date": "2024-10-17",
+        "work": "Battery replacement",
+        "mileage_km": 122368,
+        "station": "ProService"
+      },
+      {
+        "date": "2024-12-02",
+        "work": "Air filter replacement",
+        "mileage_km": 94144,
+        "station": "Dealer Service"
+      }
+    ]
+  },
+  {
+    "vin": "95V29M6AYH00W4CKA",
+    "make": "Honda",
+    "model": "Accord",
+    "year": 2017,
+    "engine": "1.6",
+    "fuel": "petrol",
+    "mileage_km": 143185,
+    "owner": {
+      "name": "User25",
+      "phone": "+77790765833"
+    },
+    "last_sync_at": "2026-02-04T19:09:00",
+    "issues": [
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      },
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      },
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-07-18",
+        "work": "Air filter replacement",
+        "mileage_km": 104234,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2024-06-18",
+        "work": "Diagnostics",
+        "mileage_km": 141254,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "399S0CAD9JWP5EZJV",
+    "make": "Toyota",
+    "model": "Camry",
+    "year": 2013,
+    "engine": "2.0",
+    "fuel": "petrol",
+    "mileage_km": 225856,
+    "owner": {
+      "name": "User26",
+      "phone": "+77649560629"
+    },
+    "last_sync_at": "2026-02-02T05:12:00",
+    "issues": [
+      {
+        "code": "check_engine",
+        "title": "Check engine light",
+        "severity": "high",
+        "dtc": {
+          "code": "P0420",
+          "desc": "Catalyst System Efficiency Below Threshold"
+        }
+      },
+      {
+        "code": "coolant_low",
+        "title": "Coolant level low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-07-05",
+        "work": "Coolant top-up",
+        "mileage_km": 221604,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2025-10-22",
+        "work": "Air filter replacement",
+        "mileage_km": 164827,
+        "station": "ProService"
+      },
+      {
+        "date": "2024-03-14",
+        "work": "Brake pads replacement",
+        "mileage_km": 157307,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2024-05-21",
+        "work": "Brake pads replacement",
+        "mileage_km": 159295,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "Z6HGJYETTY5RT8VV4",
+    "make": "Hyundai",
+    "model": "Sonata",
+    "year": 2019,
+    "engine": "1.8",
+    "fuel": "petrol",
+    "mileage_km": 171735,
+    "owner": {
+      "name": "User27",
+      "phone": "+77923996729"
+    },
+    "last_sync_at": "2026-01-31T21:08:00",
+    "issues": [
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      },
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      },
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2026-01-10",
+        "work": "Oil change",
+        "mileage_km": 151886,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2025-04-23",
+        "work": "Coolant top-up",
+        "mileage_km": 102991,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2025-10-18",
+        "work": "Coolant top-up",
+        "mileage_km": 139011,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "3YC25EGSAH85CRV68",
+    "make": "Hyundai",
+    "model": "Sonata",
+    "year": 2020,
+    "engine": "1.8",
+    "fuel": "petrol",
+    "mileage_km": 181721,
+    "owner": {
+      "name": "User28",
+      "phone": "+77979163877"
+    },
+    "last_sync_at": "2026-02-09T04:32:00",
+    "issues": [
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-08-16",
+        "work": "Diagnostics",
+        "mileage_km": 172466,
+        "station": "ProService"
+      },
+      {
+        "date": "2025-06-15",
+        "work": "Air filter replacement",
+        "mileage_km": 143232,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "4A1TRY6P5481JRK7D",
+    "make": "Toyota",
+    "model": "Camry",
+    "year": 2021,
+    "engine": "1.6",
+    "fuel": "petrol",
+    "mileage_km": 90288,
+    "owner": {
+      "name": "User29",
+      "phone": "+77775574303"
+    },
+    "last_sync_at": "2026-02-07T14:02:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2024-01-04",
+        "work": "Air filter replacement",
+        "mileage_km": 55259,
+        "station": "ProService"
+      },
+      {
+        "date": "2024-07-10",
+        "work": "Coolant top-up",
+        "mileage_km": 30711,
+        "station": "ProService"
+      },
+      {
+        "date": "2025-05-21",
+        "work": "Air filter replacement",
+        "mileage_km": 55282,
+        "station": "ProService"
+      }
+    ]
+  },
+  {
+    "vin": "KXDNETVLJRPRW4KR0",
+    "make": "Mercedes-Benz",
+    "model": "E-Class",
+    "year": 2010,
+    "engine": "1.8",
+    "fuel": "hybrid",
+    "mileage_km": 171025,
+    "owner": {
+      "name": "User30",
+      "phone": "+77423997859"
+    },
+    "last_sync_at": "2026-02-01T00:09:00",
+    "issues": [
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      },
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-07-20",
+        "work": "Battery replacement",
+        "mileage_km": 135913,
+        "station": "STO Center"
+      },
+      {
+        "date": "2025-10-13",
+        "work": "Battery replacement",
+        "mileage_km": 101648,
+        "station": "ProService"
+      },
+      {
+        "date": "2024-06-07",
+        "work": "Air filter replacement",
+        "mileage_km": 130868,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "UUX8USYMWBHZLH08Z",
+    "make": "Chevrolet",
+    "model": "Cruze",
+    "year": 2025,
+    "engine": "1.8",
+    "fuel": "diesel",
+    "mileage_km": 187985,
+    "owner": {
+      "name": "User31",
+      "phone": "+77349021080"
+    },
+    "last_sync_at": "2026-01-31T23:33:00",
+    "issues": [
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      },
+      {
+        "code": "check_engine",
+        "title": "Check engine light",
+        "severity": "high",
+        "dtc": {
+          "code": "P0128",
+          "desc": "Coolant Thermostat (Coolant Temp Below Regulating Temp)"
+        }
+      },
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-03-05",
+        "work": "Air filter replacement",
+        "mileage_km": 182093,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2024-03-11",
+        "work": "Battery replacement",
+        "mileage_km": 163664,
+        "station": "STO Center"
+      },
+      {
+        "date": "2025-03-27",
+        "work": "Battery replacement",
+        "mileage_km": 118414,
+        "station": "ProService"
+      },
+      {
+        "date": "2025-03-07",
+        "work": "Oil change",
+        "mileage_km": 165316,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "7FZAR64687DPZZDAE",
+    "make": "Lada",
+    "model": "Niva",
+    "year": 2008,
+    "engine": "2.5",
+    "fuel": "petrol",
+    "mileage_km": 27118,
+    "owner": {
+      "name": "User32",
+      "phone": "+77980899164"
+    },
+    "last_sync_at": "2026-02-02T05:33:00",
+    "issues": [
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-04-08",
+        "work": "Coolant top-up",
+        "mileage_km": 0,
+        "station": "ProService"
+      },
+      {
+        "date": "2025-08-05",
+        "work": "Coolant top-up",
+        "mileage_km": 5607,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "H2YEMAUNYM2VA5BRY",
+    "make": "Lada",
+    "model": "Granta",
+    "year": 2018,
+    "engine": "1.6",
+    "fuel": "diesel",
+    "mileage_km": 155261,
+    "owner": {
+      "name": "User33",
+      "phone": "+77068315819"
+    },
+    "last_sync_at": "2026-02-05T16:07:00",
+    "issues": [
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      },
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-06-25",
+        "work": "Brake pads replacement",
+        "mileage_km": 90435,
+        "station": "ProService"
+      },
+      {
+        "date": "2024-04-05",
+        "work": "Diagnostics",
+        "mileage_km": 93086,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "GTYS1Z9JMSKDKJSF4",
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 2024,
+    "engine": "1.6",
+    "fuel": "diesel",
+    "mileage_km": 249627,
+    "owner": {
+      "name": "User34",
+      "phone": "+77440451792"
+    },
+    "last_sync_at": "2026-02-05T14:25:00",
+    "issues": [
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      },
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-03-20",
+        "work": "Brake pads replacement",
+        "mileage_km": 235181,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2024-05-24",
+        "work": "Air filter replacement",
+        "mileage_km": 228335,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "RFNN5YFL20LPRTC4V",
+    "make": "Hyundai",
+    "model": "Sonata",
+    "year": 2019,
+    "engine": "1.6",
+    "fuel": "petrol",
+    "mileage_km": 90494,
+    "owner": {
+      "name": "User35",
+      "phone": "+77632427646"
+    },
+    "last_sync_at": "2026-02-04T21:00:00",
+    "issues": [
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-12-14",
+        "work": "Oil change",
+        "mileage_km": 42478,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2024-07-27",
+        "work": "Oil change",
+        "mileage_km": 64098,
+        "station": "STO Center"
+      },
+      {
+        "date": "2024-05-19",
+        "work": "Brake pads replacement",
+        "mileage_km": 88146,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2025-08-08",
+        "work": "Air filter replacement",
+        "mileage_km": 45724,
+        "station": "ProService"
+      }
+    ]
+  },
+  {
+    "vin": "YFHDN338AEA4GFSK9",
+    "make": "BMW",
+    "model": "X3",
+    "year": 2008,
+    "engine": "2.0",
+    "fuel": "diesel",
+    "mileage_km": 39416,
+    "owner": {
+      "name": "User36",
+      "phone": "+77415916923"
+    },
+    "last_sync_at": "2026-01-29T21:34:00",
+    "issues": [
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      },
+      {
+        "code": "oil_service_due",
+        "title": "Oil change due",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-11-21",
+        "work": "Brake pads replacement",
+        "mileage_km": 0,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2024-08-05",
+        "work": "Air filter replacement",
+        "mileage_km": 26984,
+        "station": "Dealer Service"
+      }
+    ]
+  },
+  {
+    "vin": "HV3XMEJY696W888D4",
+    "make": "Toyota",
+    "model": "Camry",
+    "year": 2011,
+    "engine": "2.0",
+    "fuel": "diesel",
+    "mileage_km": 36240,
+    "owner": {
+      "name": "User37",
+      "phone": "+77735943575"
+    },
+    "last_sync_at": "2026-02-01T06:28:00",
+    "issues": [
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      },
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-07-05",
+        "work": "Brake pads replacement",
+        "mileage_km": 0,
+        "station": "STO Center"
+      },
+      {
+        "date": "2025-05-22",
+        "work": "Oil change",
+        "mileage_km": 7870,
+        "station": "STO Center"
+      },
+      {
+        "date": "2025-02-01",
+        "work": "Air filter replacement",
+        "mileage_km": 5329,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "9HF19PBBVVYD31TEE",
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2015,
+    "engine": "1.8",
+    "fuel": "diesel",
+    "mileage_km": 116835,
+    "owner": {
+      "name": "User38",
+      "phone": "+77419885402"
+    },
+    "last_sync_at": "2026-02-03T00:11:00",
+    "issues": [
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      },
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      },
+      {
+        "code": "spark_plugs_due",
+        "title": "Spark plugs service due",
+        "severity": "low"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-02-21",
+        "work": "Oil change",
+        "mileage_km": 57731,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2024-10-22",
+        "work": "Oil change",
+        "mileage_km": 106053,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "XWGLPBLHZ8XXBTP08",
+    "make": "Toyota",
+    "model": "Camry",
+    "year": 2021,
+    "engine": "2.0",
+    "fuel": "diesel",
+    "mileage_km": 108670,
+    "owner": {
+      "name": "User39",
+      "phone": "+77355113090"
+    },
+    "last_sync_at": "2026-01-30T23:57:00",
+    "issues": [
+      {
+        "code": "check_engine",
+        "title": "Check engine light",
+        "severity": "high",
+        "dtc": {
+          "code": "P0700",
+          "desc": "Transmission Control System Malfunction"
+        }
+      },
+      {
+        "code": "oil_service_due",
+        "title": "Oil change due",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2026-01-20",
+        "work": "Battery replacement",
+        "mileage_km": 42467,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "8D0W3NNS5H5HEGZSD",
+    "make": "Honda",
+    "model": "Accord",
+    "year": 2011,
+    "engine": "1.6",
+    "fuel": "diesel",
+    "mileage_km": 132664,
+    "owner": {
+      "name": "User40",
+      "phone": "+77937286256"
+    },
+    "last_sync_at": "2026-02-06T09:11:00",
+    "issues": [
+      {
+        "code": "brake_pads_worn",
+        "title": "Brake pads worn",
+        "severity": "high"
+      },
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      },
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-09-03",
+        "work": "Diagnostics",
+        "mileage_km": 84473,
+        "station": "STO Center"
+      },
+      {
+        "date": "2024-08-13",
+        "work": "Brake pads replacement",
+        "mileage_km": 96457,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "YWPN39HWF82D4VL19",
+    "make": "BMW",
+    "model": "5 Series",
+    "year": 2013,
+    "engine": "2.5",
+    "fuel": "diesel",
+    "mileage_km": 160150,
+    "owner": {
+      "name": "User41",
+      "phone": "+77976876863"
+    },
+    "last_sync_at": "2026-01-28T08:15:00",
+    "issues": [
+      {
+        "code": "air_filter_dirty",
+        "title": "Air filter dirty",
+        "severity": "low"
+      },
+      {
+        "code": "abs_fault",
+        "title": "ABS fault",
+        "severity": "high"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-01-11",
+        "work": "Diagnostics",
+        "mileage_km": 129504,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2025-06-06",
+        "work": "Air filter replacement",
+        "mileage_km": 146627,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2025-06-26",
+        "work": "Oil change",
+        "mileage_km": 123967,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2025-11-20",
+        "work": "Diagnostics",
+        "mileage_km": 130373,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "ZBM3KRYLVDDNUX5HV",
+    "make": "Toyota",
+    "model": "RAV4",
+    "year": 2022,
+    "engine": "2.5",
+    "fuel": "hybrid",
+    "mileage_km": 246031,
+    "owner": {
+      "name": "User42",
+      "phone": "+77232277183"
+    },
+    "last_sync_at": "2026-02-02T08:46:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2024-07-10",
+        "work": "Oil change",
+        "mileage_km": 200234,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2024-04-13",
+        "work": "Brake pads replacement",
+        "mileage_km": 214961,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2024-12-09",
+        "work": "Air filter replacement",
+        "mileage_km": 235919,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "5CBXXYG83MGPDNRKH",
+    "make": "Honda",
+    "model": "Civic",
+    "year": 2022,
+    "engine": "1.6",
+    "fuel": "hybrid",
+    "mileage_km": 90422,
+    "owner": {
+      "name": "User43",
+      "phone": "+77617060292"
+    },
+    "last_sync_at": "2026-02-02T05:55:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2025-10-26",
+        "work": "Battery replacement",
+        "mileage_km": 52665,
+        "station": "ProService"
+      },
+      {
+        "date": "2026-01-17",
+        "work": "Diagnostics",
+        "mileage_km": 85278,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "UHWV7XMZKVFGPY4PM",
+    "make": "Kia",
+    "model": "Cerato",
+    "year": 2023,
+    "engine": "2.0",
+    "fuel": "petrol",
+    "mileage_km": 161272,
+    "owner": {
+      "name": "User44",
+      "phone": "+77289301402"
+    },
+    "last_sync_at": "2026-02-09T04:46:00",
+    "issues": [
+      {
+        "code": "check_engine",
+        "title": "Check engine light",
+        "severity": "high",
+        "dtc": {
+          "code": "P0700",
+          "desc": "Transmission Control System Malfunction"
+        }
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-02-27",
+        "work": "Air filter replacement",
+        "mileage_km": 129662,
+        "station": "STO Center"
+      },
+      {
+        "date": "2025-06-17",
+        "work": "Battery replacement",
+        "mileage_km": 124349,
+        "station": "ProService"
+      },
+      {
+        "date": "2024-05-29",
+        "work": "Oil change",
+        "mileage_km": 123985,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "6K8AUSP05W3FHKWCD",
+    "make": "Kia",
+    "model": "Sportage",
+    "year": 2013,
+    "engine": "2.0",
+    "fuel": "petrol",
+    "mileage_km": 49002,
+    "owner": {
+      "name": "User45",
+      "phone": "+77951759174"
+    },
+    "last_sync_at": "2026-02-05T11:11:00",
+    "issues": [
+      {
+        "code": "oil_service_due",
+        "title": "Oil change due",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-04-25",
+        "work": "Air filter replacement",
+        "mileage_km": 0,
+        "station": "ProService"
+      },
+      {
+        "date": "2025-03-11",
+        "work": "Oil change",
+        "mileage_km": 26546,
+        "station": "STO Center"
+      },
+      {
+        "date": "2025-05-15",
+        "work": "Air filter replacement",
+        "mileage_km": 11969,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "S9Z0SDU71HH1H2NSZ",
+    "make": "Kia",
+    "model": "Cerato",
+    "year": 2015,
+    "engine": "1.8",
+    "fuel": "petrol",
+    "mileage_km": 120674,
+    "owner": {
+      "name": "User46",
+      "phone": "+77136793672"
+    },
+    "last_sync_at": "2026-02-02T12:11:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2025-12-14",
+        "work": "Oil change",
+        "mileage_km": 72402,
+        "station": "STO Center"
+      }
+    ]
+  },
+  {
+    "vin": "RTZP0HWKU8AAZEMTL",
+    "make": "Lada",
+    "model": "Vesta",
+    "year": 2013,
+    "engine": "1.6",
+    "fuel": "hybrid",
+    "mileage_km": 205047,
+    "owner": {
+      "name": "User47",
+      "phone": "+77401759783"
+    },
+    "last_sync_at": "2026-02-01T16:43:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2025-07-27",
+        "work": "Brake pads replacement",
+        "mileage_km": 144196,
+        "station": "GarageLab"
+      },
+      {
+        "date": "2024-12-08",
+        "work": "Battery replacement",
+        "mileage_km": 168496,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2025-10-05",
+        "work": "Oil change",
+        "mileage_km": 154089,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2025-03-03",
+        "work": "Battery replacement",
+        "mileage_km": 158184,
+        "station": "AutoFix"
+      }
+    ]
+  },
+  {
+    "vin": "YNHNCZ07XBN3R6UR5",
+    "make": "Lada",
+    "model": "Vesta",
+    "year": 2014,
+    "engine": "1.8",
+    "fuel": "petrol",
+    "mileage_km": 180454,
+    "owner": {
+      "name": "User48",
+      "phone": "+77382485336"
+    },
+    "last_sync_at": "2026-02-09T13:39:00",
+    "issues": [
+      {
+        "code": "battery_weak",
+        "title": "Battery state of health low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2024-05-13",
+        "work": "Battery replacement",
+        "mileage_km": 144840,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2025-12-07",
+        "work": "Diagnostics",
+        "mileage_km": 118418,
+        "station": "Dealer Service"
+      }
+    ]
+  },
+  {
+    "vin": "W5B668VBJLEAH81W2",
+    "make": "Kia",
+    "model": "Cerato",
+    "year": 2015,
+    "engine": "3.0",
+    "fuel": "hybrid",
+    "mileage_km": 230610,
+    "owner": {
+      "name": "User49",
+      "phone": "+77241636026"
+    },
+    "last_sync_at": "2026-02-09T22:52:00",
+    "issues": [],
+    "service_history": [
+      {
+        "date": "2025-08-04",
+        "work": "Coolant top-up",
+        "mileage_km": 199510,
+        "station": "GarageLab"
+      }
+    ]
+  },
+  {
+    "vin": "V1PU579WGCDSWH1GF",
+    "make": "Mercedes-Benz",
+    "model": "GLA",
+    "year": 2020,
+    "engine": "1.6",
+    "fuel": "petrol",
+    "mileage_km": 183184,
+    "owner": {
+      "name": "User50",
+      "phone": "+77492347410"
+    },
+    "last_sync_at": "2026-02-03T01:49:00",
+    "issues": [
+      {
+        "code": "coolant_low",
+        "title": "Coolant level low",
+        "severity": "medium"
+      }
+    ],
+    "service_history": [
+      {
+        "date": "2025-03-01",
+        "work": "Air filter replacement",
+        "mileage_km": 145870,
+        "station": "AutoFix"
+      },
+      {
+        "date": "2025-03-22",
+        "work": "Air filter replacement",
+        "mileage_km": 129883,
+        "station": "Dealer Service"
+      },
+      {
+        "date": "2024-02-11",
+        "work": "Air filter replacement",
+        "mileage_km": 153990,
+        "station": "STO Center"
+      }
+    ]
+  }
+]

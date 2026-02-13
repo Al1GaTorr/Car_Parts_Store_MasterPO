@@ -1,0 +1,14 @@
+{
+  "S2M24A5G2NJR7NCHU": {
+    "maintenance_alerts": [
+      "Brake pads worn"
+    ],
+    "mileage_km": 24222
+  },
+  "V001": {
+    "maintenance_alerts": [
+      "Spark plugs changed"
+    ],
+    "mileage_km": 90000
+  }
+}

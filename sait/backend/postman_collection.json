@@ -1,0 +1,411 @@
+{
+  "info": {
+    "name": "SAIT Backend API",
+    "description": "Postman collection for sait/backend endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "4bce1f83-84ff-4d89-a728-b74ff5700b11"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8090"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "orderId",
+      "value": ""
+    },
+    {
+      "key": "partId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Public",
+      "item": [
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/health"
+          }
+        },
+        {
+          "name": "List Parts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/parts"
+          }
+        },
+        {
+          "name": "List Parts (Filtered Example)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/parts?vin=JTDBR32E720041922&issue=brake_noise&q=oil&make=Toyota&model=Camry&category=%D0%A2%D0%BE%D1%80%D0%BC%D0%BE%D0%B7%D0%B0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "let data = {};",
+                  "try { data = pm.response.json(); } catch (e) {}",
+                  "if (data.token) {",
+                  "  pm.collectionVariables.set('token', data.token);",
+                  "}",
+                  "pm.test('register status is 201', function () {",
+                  "  pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\",\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/register"
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "let data = {};",
+                  "try { data = pm.response.json(); } catch (e) {}",
+                  "if (data.token) {",
+                  "  pm.collectionVariables.set('token', data.token);",
+                  "}",
+                  "pm.test('login status is 200', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@cps.local\",\n  \"password\": \"admin12345\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/auth/me"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"sku\": \"ENG-OIL-5W30\",\n      \"name\": \"Engine Oil 5W-30\",\n      \"price_kzt\": 12000,\n      \"qty\": 2,\n      \"image\": \"https://example.com/oil.jpg\"\n    }\n  ],\n  \"shippingAddress\": \"Astana, Kabanbay Batyr 10\",\n  \"contactInfo\": \"+77010000000\"\n}"
+            },
+            "url": "{{baseUrl}}/api/orders"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Orders",
+      "item": [
+        {
+          "name": "List Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/admin/orders"
+          }
+        },
+        {
+          "name": "Update Order (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"shipped\"\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/orders/{{orderId}}"
+          }
+        },
+        {
+          "name": "Update Order (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"delivered\"\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/orders/{{orderId}}"
+          }
+        },
+        {
+          "name": "Delete Order",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/admin/orders/{{orderId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Parts",
+      "item": [
+        {
+          "name": "List Parts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/admin/parts"
+          }
+        },
+        {
+          "name": "Create Part",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"BRAKE-PAD-001\",\n  \"name\": \"Brake Pad Set\",\n  \"category\": \"Тормоза\",\n  \"type\": \"pads\",\n  \"brand\": \"ATE\",\n  \"price_kzt\": 18500,\n  \"currency\": \"KZT\",\n  \"stock_qty\": 20,\n  \"is_visible\": true,\n  \"images\": [\n    \"https://example.com/brake-pad.jpg\"\n  ],\n  \"compatibility\": {\n    \"type\": \"vehicle\",\n    \"vehicles\": [\n      {\n        \"make\": \"Toyota\",\n        \"model\": \"Camry\",\n        \"year_from\": 2015,\n        \"year_to\": 2022\n      }\n    ]\n  },\n  \"recommend_for_issue_codes\": [\n    \"BRAKE_NOISE\"\n  ]\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/parts"
+          }
+        },
+        {
+          "name": "Update Part (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stock_qty\": 42,\n  \"is_visible\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/parts/{{partId}}"
+          }
+        },
+        {
+          "name": "Update Part (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price_kzt\": 19900\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/parts/{{partId}}"
+          }
+        },
+        {
+          "name": "Delete Part",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/admin/parts/{{partId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Products (Legacy Alias)",
+      "item": [
+        {
+          "name": "List Products",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/admin/products"
+          }
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"FILTER-OIL-001\",\n  \"name\": \"Oil Filter\",\n  \"category\": \"Двигатель\",\n  \"price_kzt\": 6500,\n  \"currency\": \"KZT\",\n  \"stock_qty\": 30,\n  \"is_visible\": true,\n  \"compatibility\": {\n    \"type\": \"universal\"\n  }\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/products"
+          }
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Oil Filter Premium\"\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/products/{{partId}}"
+          }
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/admin/products/{{partId}}"
+          }
+        }
+      ]
+    }
+  ]
+}

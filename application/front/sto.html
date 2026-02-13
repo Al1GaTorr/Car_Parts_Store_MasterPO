@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель СТО - Digital Service Book</title>
+    <style>
+    /* Embedded styles from style.css (trimmed where appropriate) */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background-color: #09090b; color: #fafafa; line-height:1.5; min-height:100vh; }
+    .container { max-width: 760px; margin: 0 auto; padding: 1.5rem; }
+    .header { padding-top: 1.5rem; padding-bottom: 1rem; }
+    .header-content { display:flex; gap:12px; align-items:center }
+    .header-icon { width:48px; height:48px; background: linear-gradient(135deg,#f97316 0%,#dc2626 100%); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white }
+    h1 { font-size:1.25rem; }
+    .subtitle { color:#a1a1aa; font-size:0.9rem }
+
+    .search-section { margin:1rem 0 }
+    .input-label { color:#a1a1aa; margin-bottom:6px; display:block }
+    .search-input-group { display:flex; gap:8px }
+    input.search-input { flex:1; padding:12px; border-radius:12px; background:#18181b; border:1px solid #3f3f46; color:#fafafa }
+    button.btn-search { background:#06b6d4; color:white; border:none; padding:10px 16px; border-radius:12px; cursor:pointer }
+
+    .car-data-container { margin-top:12px; background: linear-gradient(135deg,#18181b 0%,#27272a 100%); border-radius:12px; padding:16px; border:1px solid #3f3f46 }
+    .car-data-container.hidden { display:none }
+    .car-info-content { display:flex; gap:12px; align-items:center }
+    .car-icon { width:48px; height:48px; background:rgba(6,182,212,0.08); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#06b6d4 }
+    .btn-edit { background:rgba(6,182,212,0.08); color:#06b6d4; padding:8px 12px; border-radius:8px; border:1px solid rgba(6,182,212,0.15); cursor:pointer }
+
+    .data-section { background:#18181b; padding:14px; border-radius:12px; margin-top:12px; border:1px solid #27272a }
+    .fields-container { display:flex; flex-direction:column; gap:12px }
+    .field-input, .field-select { background:#27272a; border:1px solid #3f3f46; padding:10px; border-radius:10px; color:#fafafa }
+    .slider { width:100% }
+
+    .btn-add-part { background:rgba(249,115,22,0.08); color:#fb923c; padding:8px 10px; border-radius:8px; border:1px solid rgba(249,115,22,0.15); cursor:pointer }
+    .add-part-form { background:#27272a; padding:10px; border-radius:10px; margin-top:8px; display:none }
+    .add-part-form.active { display:block }
+    .parts-list { margin-top:8px }
+    .part-item { display:flex; justify-content:space-between; padding:8px; background:#27272a; border-radius:8px; margin-bottom:8px }
+
+    .btn-save-all { width:100%; padding:12px; border-radius:12px; background:linear-gradient(90deg,#10b981 0%,#06b6d4 100%); color:white; border:none; cursor:pointer; margin-top:12px }
+
+    .instructions { margin-top:12px; background:rgba(24,24,27,0.5); padding:12px; border-radius:10px }
+
+    @media (max-width:480px){ .container{padding:12px} .search-input-group{flex-direction:column} .btn-search{width:100%} }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <div>
+                    <h1>Панель СТО</h1>
+                    <p class="subtitle">Управление данными автомобилей</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="search-section">
+            <label class="input-label">Номер автомобиля</label>
+            <div class="search-input-group">
+                <input id="searchInput" class="search-input" placeholder="E 777 KZ или V001" />
+                <button id="searchBtn" class="btn-search">Найти</button>
+            </div>
+        </div>
+
+        <div id="carDataContainer" class="car-data-container hidden">
+            <div class="car-info-content">
+                <div class="car-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/></svg></div>
+                <div>
+                    <h2 id="carModel">-</h2>
+                    <p id="carDetails" class="subtitle">-</p>
+                </div>
+                <div style="margin-left:auto">
+                    <button id="editBtn" class="btn-edit">Редактировать</button>
+                    <div id="saveButtons" style="display:none; margin-top:6px">
+                        <button id="saveBtn" class="btn-save-all" style="display:inline-block; width:auto; padding:8px 12px; border-radius:8px;">Сохранить</button>
+                        <button id="cancelBtn" class="btn-edit" style="margin-left:8px">Отмена</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-section">
+                <h3>Основные показатели</h3>
+                <div class="fields-container">
+                    <div>
+                        <label class="input-label">Пробег (км)</label>
+                        <input id="mileage" type="number" class="field-input" disabled />
+                    </div>
+                    <div>
+                        <label class="input-label">Уровень масла (%)</label>
+                        <input id="oilLevel" type="range" min="0" max="100" class="slider" disabled />
+                        <div id="oilLevelValue" style="margin-top:6px; color:#a1a1aa">0%</div>
+                    </div>
+                    <div>
+                        <label class="input-label">Масло заменено</label>
+                        <input id="oilChanged" type="checkbox" disabled /> <span id="lastOilChange">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-section">
+                <div style="display:flex; justify-content:space-between; align-items:center">
+                    <h3>Замененные детали</h3>
+                    <button id="addPartBtn" class="btn-add-part">Добавить деталь</button>
+                </div>
+                <div id="addPartForm" class="add-part-form">
+                    <div style="display:flex; gap:8px; margin-bottom:8px">
+                        <select id="partName" class="field-select">
+                            <option value="">Выберите деталь</option>
+                            <option value="Масло двигателя">Масло двигателя</option>
+                            <option value="Масляный фильтр">Масляный фильтр</option>
+                            <option value="Свечи зажигания">Свечи зажигания</option>
+                            <option value="Аккумулятор">Аккумулятор</option>
+                            <option value="Шины (комплект)">Шины (комплект)</option>
+                        </select>
+                        <input id="partCost" type="number" class="field-input" placeholder="Стоимость" />
+                    </div>
+                    <div style="display:flex; gap:8px">
+                        <button id="submitPartBtn" class="btn-add-part">Добавить</button>
+                        <button id="closeFormBtn" class="btn-edit">Закрыть</button>
+                    </div>
+                </div>
+                <div id="partsList" class="parts-list">
+                    <div class="part-item">Нет замененных деталей</div>
+                </div>
+            </div>
+
+                <div id="errorsSection" class="data-section">
+                  <h3>Ошибки и уведомления</h3>
+                  <div id="errorsList" style="margin-top:8px;color:#f97316">Нет ошибок</div>
+                </div>
+
+            <button id="saveAllBtn" class="btn-save-all" style="display:none">Сохранить все изменения</button>
+        </div>
+
+        <div id="instructions" class="instructions">
+            <h3>Инструкция</h3>
+            <ul>
+                <li>Введите номер автомобиля и нажмите «Найти»</li>
+                <li>Нажмите «Редактировать», внесите изменения и «Сохранить»</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+    // STO page script — uses backend endpoints to persist changes and records
+    let currentVehicle = null;
+    let serviceParts = [];
+
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const carDataContainer = document.getElementById('carDataContainer');
+    const instructions = document.getElementById('instructions');
+    const editBtn = document.getElementById('editBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const saveButtons = document.getElementById('saveButtons');
+    const saveAllBtn = document.getElementById('saveAllBtn');
+
+    const carModel = document.getElementById('carModel');
+    const carDetails = document.getElementById('carDetails');
+    const mileageInput = document.getElementById('mileage');
+    const oilLevel = document.getElementById('oilLevel');
+    const oilLevelValue = document.getElementById('oilLevelValue');
+    const oilChanged = document.getElementById('oilChanged');
+    const lastOilChange = document.getElementById('lastOilChange');
+
+    const addPartBtn = document.getElementById('addPartBtn');
+    const addPartForm = document.getElementById('addPartForm');
+    const closeFormBtn = document.getElementById('closeFormBtn');
+    const submitPartBtn = document.getElementById('submitPartBtn');
+    const partName = document.getElementById('partName');
+    const partCost = document.getElementById('partCost');
+    const partsList = document.getElementById('partsList');
+
+    function normalize(s){ return String(s||'').replace(/\s+/g,'').trim().toLowerCase(); }
+
+    async function fetchVehicles(){
+      try{ const r = await fetch('/api/sto-panel/vehicles'); if(!r.ok) throw 0; return await r.json(); }catch(e){ return []; }
+    }
+
+    async function fetchCars(){
+      try{ const r = await fetch('/api/cars'); if(!r.ok) throw 0; return await r.json(); }catch(e){ return []; }
+    }
+
+    async function handleSearch(){
+      const q = normalize(searchInput.value);
+      if(!q) return alert('Введите запрос');
+      const vehicles = await fetchVehicles();
+      const cars = await fetchCars();
+
+      let v = vehicles.find(x => normalize(x.vehicle_id) === q || normalize(x.licensePlate) === q);
+      if(!v) v = vehicles.find(x => normalize(x.brand + ' ' + x.model) === q || normalize(x.brand) === q);
+      if(!v){
+        const c = cars.find(x=> normalize(x.id)===q || normalize(x.vin)===q || normalize(x.licensePlate)===q);
+        if(c){ v = vehicles.find(x=> normalize(x.vehicle_id)===normalize(c.id) || normalize(x.vin)===normalize(c.vin)); }
+      }
+
+      if(!v) return alert('Машина не найдена');
+      displayVehicle(v);
+    }
+
+    function renderParts(){
+      if(serviceParts.length===0){ partsList.innerHTML = '<div class="part-item">Нет замененных деталей</div>'; return }
+      partsList.innerHTML = serviceParts.map(p=>`<div class="part-item"><div><strong>${p.name}</strong><div style="font-size:12px;color:#a1a1aa">${p.date}</div></div><div>${p.cost.toLocaleString('ru-RU')} ₸</div></div>`).join('');
+    }
+
+    function displayVehicle(v){
+      currentVehicle = v;
+      serviceParts = [];
+      carModel.textContent = (v.brand||'') + ' ' + (v.model||'') + ' — ' + (v.vehicle_id||'');
+      carDetails.textContent = `Year: ${v.year || '-'} • Mileage: ${v.mileage_km || v.mileage || '-'} `;
+      mileageInput.value = v.mileage_km || v.mileage || '';
+      oilLevel.value = v.oil_level || 0; oilLevelValue.textContent = (v.oil_level||0) + '%';
+      oilChanged.checked = !!(v.oil_changed || v.oilChanged);
+      lastOilChange.textContent = v.last_oil_change || v.lastOilChange || '-';
+      carDataContainer.classList.remove('hidden'); instructions.style.display='none';
+      saveAllBtn.style.display='none'; saveButtons.style.display='none';
+      setEditMode(false);
+      renderParts();
+      renderErrors();
+    }
+
+    function renderErrors(){
+      const container = document.getElementById('errorsList');
+      if(!currentVehicle) { container.innerHTML = 'Нет данных'; return; }
+      const errs = currentVehicle.errors || currentVehicle.Errors || [];
+      if(!errs || errs.length===0){ container.innerHTML = '<div style="color:#a1a1aa">Нет ошибок</div>'; return; }
+      // render each error with a resolve button
+      container.innerHTML = errs.map((e, idx) => {
+        const code = e.code || e.Code || '';
+        const desc = e.description || e.Description || '';
+        const sev = e.severity || e.Severity || '';
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#2b2b2b;margin-bottom:8px"><div><div style=\"font-weight:600;color:#f97316\">${code} — ${sev}</div><div style=\"font-size:12px;color:#a1a1aa\">${desc}</div></div><div><button data-code=\"${code}\" class=\"btn-edit resolve-error\">Пометить исправленным</button></div></div>`;
+      }).join('');
+
+      // attach handlers
+      Array.from(document.getElementsByClassName('resolve-error')).forEach(btn=>{
+        btn.addEventListener('click', async (ev)=>{
+          const code = btn.getAttribute('data-code');
+          if(!code) return;
+          if(!confirm('Пометить ошибку '+code+' как исправленную?')) return;
+          // build updated errors array without this code
+          const existing = currentVehicle.errors || currentVehicle.Errors || [];
+          const updated = existing.filter(e => (e.code||e.Code||'') !== code);
+          // send POST to update vehicle errors
+          const payload = { errors: updated };
+          try{
+            await fetch(`/api/sto-panel/vehicles/${currentVehicle.vehicle_id}`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+            // refresh vehicle data
+            const vs = await fetchVehicles();
+            const updatedV = vs.find(x=> x.vehicle_id === currentVehicle.vehicle_id);
+            if(updatedV) displayVehicle(updatedV);
+            alert('Обновлено');
+          }catch(e){ console.error(e); alert('Не удалось обновить'); }
+        });
+      });
+    }
+
+    function setEditMode(editing){
+      const inputs = [mileageInput, oilLevel, oilChanged];
+      inputs.forEach(i=> i.disabled = !editing);
+      if(editing){ editBtn.style.display='none'; saveButtons.style.display='block'; saveAllBtn.style.display='block'; }
+      else { editBtn.style.display='inline-block'; saveButtons.style.display='none'; saveAllBtn.style.display='none'; }
+    }
+
+    editBtn.addEventListener('click', ()=> setEditMode(true));
+    cancelBtn.addEventListener('click', ()=> setEditMode(false));
+
+    saveBtn.addEventListener('click', async ()=> {
+      if(!currentVehicle) return;
+      // build record
+      const rec = {
+        date: new Date().toISOString().slice(0,10),
+        mileage: Number(mileageInput.value) || currentVehicle.mileage_km || currentVehicle.mileage || 0,
+        description: 'Обновление с панели СТО',
+        serviceName: 'СТО',
+        type: 'custom',
+        parts: serviceParts.slice(),
+      };
+
+      try{
+        const r = await fetch(`/api/sto-panel/vehicles/${currentVehicle.vehicle_id}/records`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(rec)});
+        if(!r.ok) throw new Error('save failed');
+      }catch(e){ console.error(e); alert('Ошибка при сохранении записи'); }
+
+      // update maintenance alerts: if oilChanged checked, remove 'Замена масла' alert
+      const existing = currentVehicle.maintenance_alerts || currentVehicle.MaintenanceAlerts || [];
+      const fixed = new Set(); if(oilChanged.checked) fixed.add('Замена масла');
+      const updatedAlerts = existing.filter(a=> !fixed.has(a));
+
+      try{
+        await fetch(`/api/sto-panel/vehicles/${currentVehicle.vehicle_id}`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ maintenance_alerts: updatedAlerts, mileage_km: rec.mileage }) });
+      }catch(e){ console.warn(e); }
+
+      setEditMode(false);
+      // refresh client-side view
+      const vehicles = await fetchVehicles();
+      const updated = vehicles.find(x=> x.vehicle_id === currentVehicle.vehicle_id);
+      if(updated) displayVehicle(updated);
+      alert('Сохранено');
+    });
+
+    // parts UI
+    addPartBtn.addEventListener('click', ()=> addPartForm.classList.add('active'));
+    closeFormBtn.addEventListener('click', ()=> { addPartForm.classList.remove('active'); partName.value=''; partCost.value=''; });
+    submitPartBtn.addEventListener('click', (e)=>{ e.preventDefault(); const name = partName.value; const cost = Number(partCost.value) || 0; if(!name || cost<=0) return alert('Заполните поля детали'); serviceParts.push({ id:Date.now().toString(), name, cost, date: new Date().toISOString().split('T')[0] }); renderParts(); addPartForm.classList.remove('active'); partName.value=''; partCost.value=''; });
+
+    // search handlers
+    searchBtn.addEventListener('click', handleSearch);
+    searchInput.addEventListener('keypress', (e)=> { if(e.key==='Enter') handleSearch(); });
+
+    // initialize
+    (async ()=>{ try{ /* preload nothing heavy */ }catch(e){}})();
+    </script>
+</body>
+</html>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>STO Attendant</title>
+    <link rel="stylesheet" href="/src/styles/index.css">
+    <style>
+      /* Small overrides for standalone page layout while using app theme */
+      body { padding: 20px; max-width: 900px; margin: 0 auto; }
+      .card { padding: 12px; border-radius: 12px; margin-top: 12px; }
+      .row { display:flex; gap:8px; }
+      input, button, textarea { padding: 8px; font-size: 14px; }
+    </style>
+  </head>
+  <body>
+
+
+    <div id="result"></div>
+
+    <div id="history" class="mt-6"></div>
+
+    <script>
+      // merged STO script: vehicle lookup + parts UI + history persistence
+      let vehicles = [];
+      let cars = [];
+      let serviceParts = [];
+
+      async function load() {
+        try {
+          const r1 = await fetch('/api/sto-panel/vehicles');
+          vehicles = await r1.json();
+        } catch (e) { vehicles = []; }
+        try {
+          const r2 = await fetch('/api/cars');
+          cars = await r2.json();
+        } catch (e) { cars = []; }
+      }
+
+      function normalize(s){ return String(s||'').replace(/\s+/g,'').trim().toLowerCase(); }
+
+      function findByQuery(q){
+        q = normalize(q);
+        let v = vehicles.find(x => normalize(x.vehicle_id) === q || normalize(x.licensePlate) === q);
+        if (v) return { source: 'vehicles', vehicle: v };
+        v = vehicles.find(x => normalize(x.brand + ' ' + x.model) === q || normalize(x.brand) === q);
+        if (v) return { source: 'vehicles', vehicle: v };
+        let c = cars.find(x => normalize(x.id) === q || normalize(x.vin) === q || normalize(x.licensePlate) === q);
+        if (c) return { source: 'cars', car: c };
+        return null;
+      }
+
+      function renderVehicle(v){
+        serviceParts = [];
+        const out = document.getElementById('result');
+        out.innerHTML = '';
+        const card = document.createElement('div'); card.className = 'card bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-xl p-4';
+        card.innerHTML = `
+          <h3 class="text-lg text-zinc-900 dark:text-white mb-1">${v.brand} ${v.model} — ${v.vehicle_id}</h3>
+          <div class="text-sm text-zinc-600 dark:text-zinc-400">Year: ${v.year} • Mileage: ${v.mileage_km}</div>
+          <div class="text-xs text-zinc-500 dark:text-zinc-500">Location: ${v.location || ''}</div>
+        `;
+
+        const form = document.createElement('form');
+        form.innerHTML = `
+          <div class="flex gap-3 items-center mt-3">
+            <label class="text-sm"><input type="checkbox" name="oil" /> <span class="ml-2">Масло заменено</span></label>
+            <label class="text-sm"><input type="checkbox" name="spark" /> <span class="ml-2">Свечи</span></label>
+            <label class="text-sm"><input type="checkbox" name="engine" /> <span class="ml-2">Ремонт двигателя</span></label>
+          </div>
+          <div class="flex gap-2 mt-3">
+            <input name="serviceName" placeholder="Название обслуживания" class="flex-1 p-2 rounded-md border bg-white dark:bg-zinc-900" />
+            <input name="mileage" placeholder="Пробег" class="w-32 p-2 rounded-md border bg-white dark:bg-zinc-900" />
+          </div>
+          <div class="mt-3">
+            <textarea name="description" placeholder="Описание" class="w-full p-2 rounded-md border bg-white dark:bg-zinc-900" rows="3"></textarea>
+          </div>
+          <div id="partsContainer" class="mt-3"></div>
+          <div class="flex gap-2 mt-3">
+            <button type="button" id="addPartBtnLocal" class="px-3 py-2 bg-orange-500 text-white rounded-md">Добавить деталь</button>
+          </div>
+          <div class="flex justify-end mt-3"><button type="submit" class="px-4 py-2 bg-cyan-500 text-white rounded-md">Сохранить</button></div>
+        `;
+
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          const fd = new FormData(form);
+          const parts = serviceParts.slice();
+          const rec = {
+            date: new Date().toISOString().slice(0,10),
+            mileage: Number(fd.get('mileage')) || v.mileage_km,
+            description: fd.get('description')||'',
+            serviceName: fd.get('serviceName')||'СТО',
+            type: 'custom',
+            parts: parts,
+          };
+
+          // append service history via backend
+          try {
+            const res = await fetch(`/api/sto-panel/vehicles/${v.vehicle_id}/records`, {
+              method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(rec)
+            });
+            if(!res.ok) throw new Error('save failed');
+            alert('Сохранено');
+          } catch(err){ console.error(err); alert('Не удалось сохранить'); }
+
+          // fixed items - remove these from existing maintenance_alerts
+          const fixed = new Set();
+          if (fd.get('oil')) fixed.add('Замена масла');
+          if (fd.get('spark')) fixed.add('Проверка свечей');
+          if (fd.get('engine')) fixed.add('Engine repaired');
+
+          const existing = v.maintenance_alerts || v.MaintenanceAlerts || [];
+          const updatedAlerts = existing.filter(a => !fixed.has(a));
+
+          try{
+            await fetch(`/api/sto-panel/vehicles/${v.vehicle_id}`, {
+              method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({maintenance_alerts: updatedAlerts, mileage_km: rec.mileage})
+            });
+          }catch(e){ console.warn(e); }
+
+          // refresh history view
+          loadHistory(v.vehicle_id);
+        });
+
+        card.appendChild(form);
+        out.appendChild(card);
+
+        // parts UI handlers
+        function renderPartsUI(){
+          const pc = document.getElementById('partsContainer');
+          if(serviceParts.length===0){ pc.innerHTML = '<div class="text-xs text-zinc-500">Нет добавленных деталей</div>'; return }
+          pc.innerHTML = serviceParts.map(p=>`
+            <div class="p-2 bg-zinc-50 dark:bg-zinc-800 border rounded-md mb-2 flex justify-between items-center">
+              <div><div class="text-sm">${p.name}</div><div class="text-xs text-zinc-500">${p.date}</div></div>
+              <div class="text-sm text-green-500">${p.cost.toLocaleString('ru-RU')} ₸</div>
+            </div>
+          `).join('');
+        }
+
+        function openAddPartDialog(){
+          const name = prompt('Название детали (например: Масло двигателя)');
+          if(!name) return;
+          const costStr = prompt('Стоимость (₸)');
+          const cost = Number(costStr) || 0;
+          const part = { id: Date.now().toString(), name: name, date: new Date().toISOString().split('T')[0], cost };
+          serviceParts.push(part);
+          renderPartsUI();
+        }
+
+        document.getElementById('addPartBtnLocal').addEventListener('click', openAddPartDialog);
+        renderPartsUI();
+
+        // load history for this vehicle
+        loadHistory(v.vehicle_id);
+      }
+
+      async function loadHistory(vehicleId){
+        const out = document.getElementById('history');
+        out.innerHTML = '<h3 class="text-lg text-zinc-900 dark:text-white mb-2">История обслуживания</h3>';
+          try{
+            const r = await fetch(`/api/sto-panel/vehicles/${vehicleId}/changes`);
+            const ch = await r.json();
+            const hist = (ch && ch.history) ? ch.history : [];
+            if(!hist || hist.length===0){ out.innerHTML += '<div class="text-xs text-zinc-500">Нет записей</div>'; return }
+            hist.slice().reverse().forEach((rec)=>{
+              const el = document.createElement('div'); el.className='card bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-xl p-3 mb-2';
+              const partsHtml = (rec.parts||[]).map(p=>`<div class="text-xs text-zinc-500">${p.name} — ${p.cost.toLocaleString('ru-RU')} ₸</div>`).join('');
+              const svcName = rec.serviceName || rec.Type || rec.type || 'СТО';
+              el.innerHTML = `<div class="text-sm text-zinc-600 dark:text-zinc-400">${rec.date} — ${svcName}</div><div class="text-sm text-zinc-900 dark:text-white">${rec.description || ''}</div>${partsHtml}`;
+              out.appendChild(el);
+            });
+          }catch(e){ out.innerHTML += '<div class="text-xs text-zinc-500">Не удалось загрузить историю</div>'; }
+      }
+
+      document.getElementById('search').addEventListener('click', async ()=>{
+        const q = document.getElementById('q').value || '';
+        const r = findByQuery(q);
+        if (!r) { alert('Не найдено'); return; }
+        if (r.source === 'vehicles') renderVehicle(r.vehicle);
+        else if (r.source === 'cars') {
+          const mapped = vehicles.find(x=> normalize(x.vehicle_id)===normalize(r.car.id) || normalize(x.vehicle_id)===normalize(r.car.vin));
+          if (mapped) renderVehicle(mapped);
+          else { alert('Найден автомобиль, но нет записи vehicle'); }
+        }
+      });
+
+      load();
+    </script>
+  </body>
+</html>

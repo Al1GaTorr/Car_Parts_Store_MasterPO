@@ -1,0 +1,1283 @@
+{
+  "generated_at": "2026-01-24T12:00:00Z",
+  "source": "mock_obd_provider",
+  "vehicles": [
+    {
+      "vehicle_id": "N4E11XETZAXRLA3W3",
+      "brand": "Mercedes-Benz",
+      "model": "C-Class",
+      "year": 2010,
+      "mileage_km": 165138,
+      "engine_type": "",
+      "last_service_km": 160000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "S2M24A5G2NJR7NCHU",
+      "brand": "Honda",
+      "model": "Civic",
+      "year": 2009,
+      "mileage_km": 24222,
+      "engine_type": "",
+      "last_service_km": 20000,
+      "errors": [
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": ""
+        }
+      ],
+      "maintenance_alerts": [
+        "Brake pads worn"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "CGWK9Y69XRF8P66CE",
+      "brand": "Mercedes-Benz",
+      "model": "GLA",
+      "year": 2020,
+      "mileage_km": 54919,
+      "engine_type": "",
+      "last_service_km": 50000,
+      "errors": [
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        },
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        },
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        }
+      ],
+      "maintenance_alerts": [
+        "Brake pads worn"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "ZKSRJBUH8NWUTWRHD",
+      "brand": "Volkswagen",
+      "model": "Polo",
+      "year": 2019,
+      "mileage_km": 99761,
+      "engine_type": "",
+      "last_service_km": 90000,
+      "errors": [
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        },
+        {
+          "code": "oil_service_due",
+          "severity": "medium",
+          "description": "Oil change due",
+          "recommended_action": "Replace engine oil and oil filter"
+        },
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty",
+        "Oil change due"
+      ],
+      "risk_level": "medium",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "2NS93G85ZHH4L69YS",
+      "brand": "Honda",
+      "model": "Civic",
+      "year": 2016,
+      "mileage_km": 239723,
+      "engine_type": "",
+      "last_service_km": 230000,
+      "errors": [
+        {
+          "code": "oil_service_due",
+          "severity": "medium",
+          "description": "Oil change due",
+          "recommended_action": "Replace engine oil and oil filter"
+        },
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        },
+        {
+          "code": "spark_plugs_due",
+          "severity": "info",
+          "description": "Spark plugs service due",
+          "recommended_action": "Replace spark plugs"
+        }
+      ],
+      "maintenance_alerts": [
+        "Oil change due",
+        "Spark plugs service due"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "PWERVSMVXN5K6KVCP",
+      "brand": "Hyundai",
+      "model": "Tucson",
+      "year": 2008,
+      "mileage_km": 76877,
+      "engine_type": "",
+      "last_service_km": 70000,
+      "errors": [
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        },
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        },
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        }
+      ],
+      "maintenance_alerts": [
+        "Brake pads worn"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "2XVBJLEWZNGWKP5C6",
+      "brand": "Lada",
+      "model": "Granta",
+      "year": 2016,
+      "mileage_km": 241822,
+      "engine_type": "",
+      "last_service_km": 240000,
+      "errors": [
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "RG555E08JLEXWVSCA",
+      "brand": "Kia",
+      "model": "Cerato",
+      "year": 2015,
+      "mileage_km": 186392,
+      "engine_type": "",
+      "last_service_km": 180000,
+      "errors": [
+        {
+          "code": "coolant_low",
+          "severity": "medium",
+          "description": "Coolant level low",
+          "recommended_action": "Check coolant level and cooling system"
+        },
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        }
+      ],
+      "maintenance_alerts": [
+        "Brake pads worn"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "46YEDCG2GPTB0S9GK",
+      "brand": "Kia",
+      "model": "Sportage",
+      "year": 2020,
+      "mileage_km": 23451,
+      "engine_type": "",
+      "last_service_km": 20000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "U2L7WEYM25DLP5LAZ",
+      "brand": "Volkswagen",
+      "model": "Golf",
+      "year": 2019,
+      "mileage_km": 58373,
+      "engine_type": "",
+      "last_service_km": 50000,
+      "errors": [
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        },
+        {
+          "code": "oil_service_due",
+          "severity": "medium",
+          "description": "Oil change due",
+          "recommended_action": "Replace engine oil and oil filter"
+        },
+        {
+          "code": "spark_plugs_due",
+          "severity": "info",
+          "description": "Spark plugs service due",
+          "recommended_action": "Replace spark plugs"
+        }
+      ],
+      "maintenance_alerts": [
+        "Oil change due",
+        "Spark plugs service due"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "SYZF8V01RS6Y1ALSK",
+      "brand": "Kia",
+      "model": "Sportage",
+      "year": 2017,
+      "mileage_km": 246845,
+      "engine_type": "",
+      "last_service_km": 240000,
+      "errors": [
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        },
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "T4CF6CRR3GJS9070N",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "year": 2008,
+      "mileage_km": 135094,
+      "engine_type": "",
+      "last_service_km": 130000,
+      "errors": [
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        }
+      ],
+      "maintenance_alerts": [
+        "Brake pads worn"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "D915UE6YGYJE55GR0",
+      "brand": "Mercedes-Benz",
+      "model": "GLA",
+      "year": 2022,
+      "mileage_km": 44043,
+      "engine_type": "",
+      "last_service_km": 40000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "5DVJ094DES65LMALY",
+      "brand": "Toyota",
+      "model": "RAV4",
+      "year": 2022,
+      "mileage_km": 157049,
+      "engine_type": "",
+      "last_service_km": 150000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "B8TXHE5E2H0T59VWH",
+      "brand": "Kia",
+      "model": "Cerato",
+      "year": 2018,
+      "mileage_km": 184016,
+      "engine_type": "",
+      "last_service_km": 180000,
+      "errors": [
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        }
+      ],
+      "maintenance_alerts": [
+        "Brake pads worn"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "VWS22EV4PMUM86NZC",
+      "brand": "Mercedes-Benz",
+      "model": "Sprinter",
+      "year": 2020,
+      "mileage_km": 178382,
+      "engine_type": "",
+      "last_service_km": 170000,
+      "errors": [
+        {
+          "code": "oil_service_due",
+          "severity": "medium",
+          "description": "Oil change due",
+          "recommended_action": "Replace engine oil and oil filter"
+        },
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        },
+        {
+          "code": "spark_plugs_due",
+          "severity": "info",
+          "description": "Spark plugs service due",
+          "recommended_action": "Replace spark plugs"
+        }
+      ],
+      "maintenance_alerts": [
+        "Oil change due",
+        "Brake pads worn",
+        "Spark plugs service due"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "F217ZHWRXJXXAF3ZY",
+      "brand": "Mercedes-Benz",
+      "model": "E-Class",
+      "year": 2010,
+      "mileage_km": 195989,
+      "engine_type": "",
+      "last_service_km": 190000,
+      "errors": [
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty"
+      ],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "UP66YG11ZN2F7H5MA",
+      "brand": "Toyota",
+      "model": "Land Cruiser",
+      "year": 2010,
+      "mileage_km": 161080,
+      "engine_type": "",
+      "last_service_km": 160000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "Y97RNJ7LEDNFXTGBZ",
+      "brand": "Nissan",
+      "model": "Qashqai",
+      "year": 2011,
+      "mileage_km": 86830,
+      "engine_type": "",
+      "last_service_km": 80000,
+      "errors": [
+        {
+          "code": "spark_plugs_due",
+          "severity": "info",
+          "description": "Spark plugs service due",
+          "recommended_action": "Replace spark plugs"
+        },
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        }
+      ],
+      "maintenance_alerts": [
+        "Spark plugs service due",
+        "Air filter dirty"
+      ],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "2NRZRMY26T939X66U",
+      "brand": "Honda",
+      "model": "Accord",
+      "year": 2018,
+      "mileage_km": 18635,
+      "engine_type": "",
+      "last_service_km": 10000,
+      "errors": [
+        {
+          "code": "oil_service_due",
+          "severity": "medium",
+          "description": "Oil change due",
+          "recommended_action": "Replace engine oil and oil filter"
+        },
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        },
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        }
+      ],
+      "maintenance_alerts": [
+        "Oil change due",
+        "Brake pads worn",
+        "Air filter dirty"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "WKPW7DPM3N00UBN02",
+      "brand": "Kia",
+      "model": "Sorento",
+      "year": 2017,
+      "mileage_km": 55213,
+      "engine_type": "",
+      "last_service_km": 50000,
+      "errors": [
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        },
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "D55RHA9TNJ99YAUUR",
+      "brand": "Lada",
+      "model": "Niva",
+      "year": 2009,
+      "mileage_km": 222273,
+      "engine_type": "",
+      "last_service_km": 220000,
+      "errors": [
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        },
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "XM2Z1T7Y6CGYULNGP",
+      "brand": "Hyundai",
+      "model": "Santa Fe",
+      "year": 2025,
+      "mileage_km": 181272,
+      "engine_type": "",
+      "last_service_km": 180000,
+      "errors": [
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        },
+        {
+          "code": "check_engine",
+          "severity": "critical",
+          "description": "Check engine light",
+          "recommended_action": "Run OBD diagnostics and inspect engine systems"
+        },
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "X2XK5B86VLSFULTNC",
+      "brand": "Kia",
+      "model": "Sportage",
+      "year": 2019,
+      "mileage_km": 154837,
+      "engine_type": "",
+      "last_service_km": 150000,
+      "errors": [
+        {
+          "code": "check_engine",
+          "severity": "critical",
+          "description": "Check engine light",
+          "recommended_action": "Run OBD diagnostics and inspect engine systems"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "95V29M6AYH00W4CKA",
+      "brand": "Honda",
+      "model": "Accord",
+      "year": 2017,
+      "mileage_km": 143185,
+      "engine_type": "",
+      "last_service_km": 140000,
+      "errors": [
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        },
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        },
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty",
+        "Brake pads worn"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "399S0CAD9JWP5EZJV",
+      "brand": "Toyota",
+      "model": "Camry",
+      "year": 2013,
+      "mileage_km": 225856,
+      "engine_type": "",
+      "last_service_km": 220000,
+      "errors": [
+        {
+          "code": "check_engine",
+          "severity": "critical",
+          "description": "Check engine light",
+          "recommended_action": "Run OBD diagnostics and inspect engine systems"
+        },
+        {
+          "code": "coolant_low",
+          "severity": "medium",
+          "description": "Coolant level low",
+          "recommended_action": "Check coolant level and cooling system"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "Z6HGJYETTY5RT8VV4",
+      "brand": "Hyundai",
+      "model": "Sonata",
+      "year": 2019,
+      "mileage_km": 171735,
+      "engine_type": "",
+      "last_service_km": 170000,
+      "errors": [
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        },
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        },
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        }
+      ],
+      "maintenance_alerts": [
+        "Brake pads worn",
+        "Air filter dirty"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "3YC25EGSAH85CRV68",
+      "brand": "Hyundai",
+      "model": "Sonata",
+      "year": 2020,
+      "mileage_km": 181721,
+      "engine_type": "",
+      "last_service_km": 180000,
+      "errors": [
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "medium",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "4A1TRY6P5481JRK7D",
+      "brand": "Toyota",
+      "model": "Camry",
+      "year": 2021,
+      "mileage_km": 90288,
+      "engine_type": "",
+      "last_service_km": 90000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "KXDNETVLJRPRW4KR0",
+      "brand": "Mercedes-Benz",
+      "model": "E-Class",
+      "year": 2010,
+      "mileage_km": 171025,
+      "engine_type": "",
+      "last_service_km": 170000,
+      "errors": [
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        },
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "UUX8USYMWBHZLH08Z",
+      "brand": "Chevrolet",
+      "model": "Cruze",
+      "year": 2025,
+      "mileage_km": 187985,
+      "engine_type": "",
+      "last_service_km": 180000,
+      "errors": [
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        },
+        {
+          "code": "check_engine",
+          "severity": "critical",
+          "description": "Check engine light",
+          "recommended_action": "Run OBD diagnostics and inspect engine systems"
+        },
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "7FZAR64687DPZZDAE",
+      "brand": "Lada",
+      "model": "Niva",
+      "year": 2008,
+      "mileage_km": 27118,
+      "engine_type": "",
+      "last_service_km": 20000,
+      "errors": [
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty"
+      ],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "H2YEMAUNYM2VA5BRY",
+      "brand": "Lada",
+      "model": "Granta",
+      "year": 2018,
+      "mileage_km": 155261,
+      "engine_type": "",
+      "last_service_km": 150000,
+      "errors": [
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        },
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        }
+      ],
+      "maintenance_alerts": [
+        "Brake pads worn"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "GTYS1Z9JMSKDKJSF4",
+      "brand": "Volkswagen",
+      "model": "Polo",
+      "year": 2024,
+      "mileage_km": 249627,
+      "engine_type": "",
+      "last_service_km": 240000,
+      "errors": [
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        },
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty",
+        "Brake pads worn"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "RFNN5YFL20LPRTC4V",
+      "brand": "Hyundai",
+      "model": "Sonata",
+      "year": 2019,
+      "mileage_km": 90494,
+      "engine_type": "",
+      "last_service_km": 90000,
+      "errors": [
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "YFHDN338AEA4GFSK9",
+      "brand": "BMW",
+      "model": "X3",
+      "year": 2008,
+      "mileage_km": 39416,
+      "engine_type": "",
+      "last_service_km": 30000,
+      "errors": [
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        },
+        {
+          "code": "oil_service_due",
+          "severity": "medium",
+          "description": "Oil change due",
+          "recommended_action": "Replace engine oil and oil filter"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty",
+        "Oil change due"
+      ],
+      "risk_level": "medium",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "HV3XMEJY696W888D4",
+      "brand": "Toyota",
+      "model": "Camry",
+      "year": 2011,
+      "mileage_km": 36240,
+      "engine_type": "",
+      "last_service_km": 30000,
+      "errors": [
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        },
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty"
+      ],
+      "risk_level": "medium",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "9HF19PBBVVYD31TEE",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "year": 2015,
+      "mileage_km": 116835,
+      "engine_type": "",
+      "last_service_km": 110000,
+      "errors": [
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        },
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        },
+        {
+          "code": "spark_plugs_due",
+          "severity": "info",
+          "description": "Spark plugs service due",
+          "recommended_action": "Replace spark plugs"
+        }
+      ],
+      "maintenance_alerts": [
+        "Brake pads worn",
+        "Spark plugs service due"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "XWGLPBLHZ8XXBTP08",
+      "brand": "Toyota",
+      "model": "Camry",
+      "year": 2021,
+      "mileage_km": 108670,
+      "engine_type": "",
+      "last_service_km": 100000,
+      "errors": [
+        {
+          "code": "check_engine",
+          "severity": "critical",
+          "description": "Check engine light",
+          "recommended_action": "Run OBD diagnostics and inspect engine systems"
+        },
+        {
+          "code": "oil_service_due",
+          "severity": "medium",
+          "description": "Oil change due",
+          "recommended_action": "Replace engine oil and oil filter"
+        }
+      ],
+      "maintenance_alerts": [
+        "Oil change due"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "8D0W3NNS5H5HEGZSD",
+      "brand": "Honda",
+      "model": "Accord",
+      "year": 2011,
+      "mileage_km": 132664,
+      "engine_type": "",
+      "last_service_km": 130000,
+      "errors": [
+        {
+          "code": "brake_pads_worn",
+          "severity": "critical",
+          "description": "Brake pads worn",
+          "recommended_action": "Inspect and replace brake pads"
+        },
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        },
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        }
+      ],
+      "maintenance_alerts": [
+        "Brake pads worn",
+        "Air filter dirty"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "YWPN39HWF82D4VL19",
+      "brand": "BMW",
+      "model": "5 Series",
+      "year": 2013,
+      "mileage_km": 160150,
+      "engine_type": "",
+      "last_service_km": 160000,
+      "errors": [
+        {
+          "code": "air_filter_dirty",
+          "severity": "info",
+          "description": "Air filter dirty",
+          "recommended_action": "Replace air filter"
+        },
+        {
+          "code": "abs_fault",
+          "severity": "critical",
+          "description": "ABS fault",
+          "recommended_action": "Run ABS diagnostics (sensor/wiring)"
+        }
+      ],
+      "maintenance_alerts": [
+        "Air filter dirty"
+      ],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "ZBM3KRYLVDDNUX5HV",
+      "brand": "Toyota",
+      "model": "RAV4",
+      "year": 2022,
+      "mileage_km": 246031,
+      "engine_type": "",
+      "last_service_km": 240000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "5CBXXYG83MGPDNRKH",
+      "brand": "Honda",
+      "model": "Civic",
+      "year": 2022,
+      "mileage_km": 90422,
+      "engine_type": "",
+      "last_service_km": 90000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "UHWV7XMZKVFGPY4PM",
+      "brand": "Kia",
+      "model": "Cerato",
+      "year": 2023,
+      "mileage_km": 161272,
+      "engine_type": "",
+      "last_service_km": 160000,
+      "errors": [
+        {
+          "code": "check_engine",
+          "severity": "critical",
+          "description": "Check engine light",
+          "recommended_action": "Run OBD diagnostics and inspect engine systems"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "critical",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "6K8AUSP05W3FHKWCD",
+      "brand": "Kia",
+      "model": "Sportage",
+      "year": 2013,
+      "mileage_km": 49002,
+      "engine_type": "",
+      "last_service_km": 40000,
+      "errors": [
+        {
+          "code": "oil_service_due",
+          "severity": "medium",
+          "description": "Oil change due",
+          "recommended_action": "Replace engine oil and oil filter"
+        }
+      ],
+      "maintenance_alerts": [
+        "Oil change due"
+      ],
+      "risk_level": "medium",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "S9Z0SDU71HH1H2NSZ",
+      "brand": "Kia",
+      "model": "Cerato",
+      "year": 2015,
+      "mileage_km": 120674,
+      "engine_type": "",
+      "last_service_km": 120000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "RTZP0HWKU8AAZEMTL",
+      "brand": "Lada",
+      "model": "Vesta",
+      "year": 2013,
+      "mileage_km": 205047,
+      "engine_type": "",
+      "last_service_km": 200000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "YNHNCZ07XBN3R6UR5",
+      "brand": "Lada",
+      "model": "Vesta",
+      "year": 2014,
+      "mileage_km": 180454,
+      "engine_type": "",
+      "last_service_km": 180000,
+      "errors": [
+        {
+          "code": "battery_weak",
+          "severity": "medium",
+          "description": "Battery state of health low",
+          "recommended_action": "Check battery and charging system"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "medium",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "W5B668VBJLEAH81W2",
+      "brand": "Kia",
+      "model": "Cerato",
+      "year": 2015,
+      "mileage_km": 230610,
+      "engine_type": "",
+      "last_service_km": 230000,
+      "errors": [],
+      "maintenance_alerts": [],
+      "risk_level": "info",
+      "location": "",
+      "dtp_history": false
+    },
+    {
+      "vehicle_id": "V1PU579WGCDSWH1GF",
+      "brand": "Mercedes-Benz",
+      "model": "GLA",
+      "year": 2020,
+      "mileage_km": 183184,
+      "engine_type": "",
+      "last_service_km": 180000,
+      "errors": [
+        {
+          "code": "coolant_low",
+          "severity": "medium",
+          "description": "Coolant level low",
+          "recommended_action": "Check coolant level and cooling system"
+        }
+      ],
+      "maintenance_alerts": [],
+      "risk_level": "medium",
+      "location": "",
+      "dtp_history": false
+    }
+  ]
+}

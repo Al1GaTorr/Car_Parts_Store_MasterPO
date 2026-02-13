@@ -1,0 +1,5 @@
+{
+  "name": "bazarPO MVP",
+  "description": "A comprehensive MVP for bazarPO - an auto parts e-commerce platform integrated with OBD service concepts. Features VIN search, catalog browsing, cart management, user authentication, and a full admin dashboard.",
+  "requestFramePermissions": []
+}

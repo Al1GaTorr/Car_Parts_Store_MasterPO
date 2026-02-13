@@ -20,6 +20,7 @@ type ListPartsParams struct {
 	Search   string
 	Make     string
 	Model    string
+	Year     int
 	Category string
 }
 
@@ -73,9 +74,9 @@ func (s *PartService) ListParts(ctx context.Context, params ListPartsParams) ([]
 	search := strings.TrimSpace(params.Search)
 	carMake := strings.TrimSpace(params.Make)
 	carModel := strings.TrimSpace(params.Model)
+	year := params.Year
 	category := strings.TrimSpace(params.Category)
 
-	year := 0
 	if vin != "" {
 		car, err := s.findCarByVIN(ctx, vin)
 		if err == nil {
@@ -119,4 +120,3 @@ func (s *PartService) ListParts(ctx context.Context, params ListPartsParams) ([]
 
 	return items, nil
 }
-

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
@@ -13,18 +14,20 @@ import (
 )
 
 type Handler struct {
-	auth     *service.AuthService
-	parts    *service.PartService
-	orders   *service.OrderService
-	admin    *service.AdminPartService
+	auth   *service.AuthService
+	cars   *service.CarService
+	parts  *service.PartService
+	orders *service.OrderService
+	admin  *service.AdminPartService
 }
 
-func New(auth *service.AuthService, parts *service.PartService, orders *service.OrderService, admin *service.AdminPartService) *Handler {
+func New(auth *service.AuthService, cars *service.CarService, parts *service.PartService, orders *service.OrderService, admin *service.AdminPartService) *Handler {
 	return &Handler{
-		auth:     auth,
-		parts:    parts,
-		orders:   orders,
-		admin:    admin,
+		auth:   auth,
+		cars:   cars,
+		parts:  parts,
+		orders: orders,
+		admin:  admin,
 	}
 }
 
@@ -161,12 +164,19 @@ func (h *Handler) me(w http.ResponseWriter, r *http.Request, c *model.Claims) {
 
 func (h *Handler) listParts(w http.ResponseWriter, r *http.Request) {
 	q := r.URL.Query()
+	year := 0
+	if y := strings.TrimSpace(q.Get("year")); y != "" {
+		if parsed, err := strconv.Atoi(y); err == nil && parsed > 0 {
+			year = parsed
+		}
+	}
 	params := service.ListPartsParams{
 		VIN:      q.Get("vin"),
 		Issue:    q.Get("issue"),
 		Search:   q.Get("q"),
 		Make:     q.Get("make"),
 		Model:    q.Get("model"),
+		Year:     year,
 		Category: q.Get("category"),
 	}
 
@@ -176,6 +186,56 @@ func (h *Handler) listParts(w http.ResponseWriter, r *http.Request) {
 	items, err := h.parts.ListParts(ctx, params)
 	if err != nil {
 		writeJSON(w, 500, map[string]any{"error": "db error"})
+		return
+	}
+	writeJSON(w, 200, map[string]any{"items": items})
+}
+
+func (h *Handler) listCarMakes(w http.ResponseWriter, r *http.Request) {
+	ctx, cancel := context.WithTimeout(r.Context(), 8*time.Second)
+	defer cancel()
+
+	items, err := h.cars.ListMakes(ctx)
+	if err != nil {
+		writeJSON(w, 500, map[string]any{"error": "db error"})
+		return
+	}
+	writeJSON(w, 200, map[string]any{"items": items})
+}
+
+func (h *Handler) listCarModelsByMake(w http.ResponseWriter, r *http.Request) {
+	make := strings.TrimSpace(r.URL.Query().Get("make"))
+	ctx, cancel := context.WithTimeout(r.Context(), 8*time.Second)
+	defer cancel()
+
+	items, err := h.cars.ListModelsByMake(ctx, make)
+	if err != nil {
+		if errors.Is(err, service.ErrMakeRequired) {
+			writeJSON(w, 400, map[string]any{"error": "make required"})
+			return
+		}
+		writeJSON(w, 500, map[string]any{"error": "db error"})
+		return
+	}
+	writeJSON(w, 200, map[string]any{"items": items})
+}
+
+func (h *Handler) listCarYearsByMakeModel(w http.ResponseWriter, r *http.Request) {
+	make := strings.TrimSpace(r.URL.Query().Get("make"))
+	model := strings.TrimSpace(r.URL.Query().Get("model"))
+	ctx, cancel := context.WithTimeout(r.Context(), 8*time.Second)
+	defer cancel()
+
+	items, err := h.cars.ListYearsByMakeModel(ctx, make, model)
+	if err != nil {
+		switch {
+		case errors.Is(err, service.ErrMakeRequired):
+			writeJSON(w, 400, map[string]any{"error": "make required"})
+		case errors.Is(err, service.ErrModelRequired):
+			writeJSON(w, 400, map[string]any{"error": "model required"})
+		default:
+			writeJSON(w, 500, map[string]any{"error": "db error"})
+		}
 		return
 	}
 	writeJSON(w, 200, map[string]any{"items": items})
@@ -356,6 +416,24 @@ func (h *Handler) Routes() http.Handler {
 
 	mux.HandleFunc("/api/health", h.health)
 	mux.HandleFunc("/api/parts", h.listParts)
+	mux.HandleFunc("/api/cars/makes", func(w http.ResponseWriter, r *http.Request) {
+		if !requireMethod(w, r, http.MethodGet) {
+			return
+		}
+		h.listCarMakes(w, r)
+	})
+	mux.HandleFunc("/api/cars/models", func(w http.ResponseWriter, r *http.Request) {
+		if !requireMethod(w, r, http.MethodGet) {
+			return
+		}
+		h.listCarModelsByMake(w, r)
+	})
+	mux.HandleFunc("/api/cars/years", func(w http.ResponseWriter, r *http.Request) {
+		if !requireMethod(w, r, http.MethodGet) {
+			return
+		}
+		h.listCarYearsByMakeModel(w, r)
+	})
 
 	mux.HandleFunc("/api/auth/register", h.register)
 	mux.HandleFunc("/api/auth/login", h.login)

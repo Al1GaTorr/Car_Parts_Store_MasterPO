@@ -29,6 +29,7 @@ func main() {
 
 	repositories := repo.New(db)
 	authService := service.NewAuthService(repositories, env)
+	carService := service.NewCarService(repositories)
 	partService := service.NewPartService(repositories)
 	orderService := service.NewOrderService(repositories)
 	adminPartService := service.NewAdminPartService(repositories)
@@ -37,7 +38,7 @@ func main() {
 		log.Println("ensureAdmin:", err)
 	}
 
-	h := handler.New(authService, partService, orderService, adminPartService)
+	h := handler.New(authService, carService, partService, orderService, adminPartService)
 
 	addr := ":" + env.Port
 	srv := &http.Server{

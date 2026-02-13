@@ -2,6 +2,9 @@ package repo
 
 import (
 	"context"
+	"fmt"
+	"regexp"
+	"sort"
 	"strings"
 
 	"bazarpo-backend/internal/model"
@@ -69,6 +72,78 @@ func (r *Repository) FindCarByVIN(ctx context.Context, vin string) (*model.CarDo
 		return nil, err
 	}
 	return &car, nil
+}
+
+func exactCI(value string) bson.M {
+	return bson.M{
+		"$regex":   "^" + regexp.QuoteMeta(strings.TrimSpace(value)) + "$",
+		"$options": "i",
+	}
+}
+
+func distinctStrings(values []any) []string {
+	out := make([]string, 0, len(values))
+	for _, v := range values {
+		s, ok := v.(string)
+		if !ok {
+			continue
+		}
+		s = strings.TrimSpace(s)
+		if s == "" {
+			continue
+		}
+		out = append(out, s)
+	}
+	sort.Strings(out)
+	return out
+}
+
+func distinctInts(values []any) ([]int, error) {
+	out := make([]int, 0, len(values))
+	for _, v := range values {
+		switch n := v.(type) {
+		case int:
+			out = append(out, n)
+		case int32:
+			out = append(out, int(n))
+		case int64:
+			out = append(out, int(n))
+		case float64:
+			out = append(out, int(n))
+		default:
+			return nil, fmt.Errorf("unsupported year type %T", v)
+		}
+	}
+	sort.Ints(out)
+	return out, nil
+}
+
+func (r *Repository) DistinctCarMakes(ctx context.Context) ([]string, error) {
+	values, err := r.Cars.Distinct(ctx, "make", bson.M{})
+	if err != nil {
+		return nil, err
+	}
+	return distinctStrings(values), nil
+}
+
+func (r *Repository) DistinctCarModelsByMake(ctx context.Context, make string) ([]string, error) {
+	values, err := r.Cars.Distinct(ctx, "model", bson.M{"make": exactCI(make)})
+	if err != nil {
+		return nil, err
+	}
+	return distinctStrings(values), nil
+}
+
+func (r *Repository) DistinctCarYearsByMakeModel(ctx context.Context, make, model string) ([]int, error) {
+	filter := bson.M{
+		"make":  exactCI(make),
+		"model": exactCI(model),
+	}
+	values, err := r.Cars.Distinct(ctx, "year", filter)
+	if err != nil {
+		return nil, err
+	}
+	return distinctInts(values)
 }
 
 func (r *Repository) FindParts(ctx context.Context, filter bson.M, limit int64) ([]model.PartDoc, error) {
